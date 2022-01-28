@@ -1,25 +1,51 @@
 html, body {
   margin: 0;
   font-family: 'Segoe UI';
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
 }
 
 body {
   background-color: #f5f5db;
 }
 
-.canvasWrapper {
-  position: fixed;
-  left: 0;
-  width: 75%;
-  height: 90vh;
+.lobby {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.chalkboard {
+  width: 1000px;
+  height: 750px;
   background-color: #354d42;
-  box-shadow: 0 0 300px #000000aa inset;
+  box-shadow: 0 0 150px #000000cb inset;
   border-style: ridge;
   border-width: 10px;
   border-radius: 5px;
   border-color:#926d53
+}
+
+.chalkboard-text-arrow {
+  position: absolute;
+  transform: rotate(-30deg);
+  left: 625px;
+  top: 15px;
+  width: 75px;
+  height: 50px;
+  background-image: url(./Resources/Chalkboard-text-arrow.png);
+  background-size: 100px;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.chalkboard-text-url {
+  position: absolute;
+  left: 700px;
+  top: 15px;
+  width: 300px;
+  height: 75px;
+  background-image: url(./Resources/Chalkboard-text-url.png);
+  background-size: 300px;
+  background-repeat: no-repeat;
+  pointer-events: none;
 }

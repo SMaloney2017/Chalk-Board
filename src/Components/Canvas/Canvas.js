@@ -48,8 +48,8 @@ function Canvas(props) {
         onMouseDown={startPainting}
         onMouseUp={stopPainting}
         onMouseMove={paintCanvas}
-        width={window.innerWidth * 0.75}
-        height={window.innerHeight}
+        width={`1000px`}
+        height={`750px`}
         ref={canvasRef}
       />
     </>
