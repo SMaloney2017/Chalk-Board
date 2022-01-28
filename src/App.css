@@ -15,6 +15,7 @@ body {
 }
 
 .chalkboard {
+  position: inherit;
   width: 1000px;
   height: 750px;
   background-color: #354d42;
@@ -27,21 +28,21 @@ body {
 
 .chalkboard-text-arrow {
   position: absolute;
-  transform: rotate(-30deg);
-  left: 625px;
-  top: 15px;
+  left: 610px;
+  top: 10px;
   width: 75px;
   height: 50px;
   background-image: url(./Resources/Chalkboard-text-arrow.png);
   background-size: 100px;
   background-repeat: no-repeat;
+  transform: rotate(-30deg);
   pointer-events: none;
 }
 
 .chalkboard-text-url {
-  position: absolute;
-  left: 700px;
-  top: 15px;
+  position: inherit;
+  left: 690px;
+  top: 10px;
   width: 300px;
   height: 75px;
   background-image: url(./Resources/Chalkboard-text-url.png);
