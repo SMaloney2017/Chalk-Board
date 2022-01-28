@@ -13,7 +13,7 @@ function Canvas(props) {
       ctx.lineJoin = "round";
       ctx.strokeStyle = props.lineColor;
       ctx.lineWidth = props.lineWidth;
-  
+      ctx.globalAlpha = 1;
       ctxRef.current = ctx;
     }, [props.lineColor, props.lineWidth]);
   
