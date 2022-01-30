@@ -1,0 +1,44 @@
+.pallete {
+    width: 100%;
+    height: 100%;
+}
+
+.swatch {
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 25px 25px 25px 25px 25px 25px 25px 25px 25px 25px 25px;
+    grid-gap: 5px;
+    background-color: #1b1b1b;
+    border-style: ridge;
+    border-width: 5px;
+    border-radius: 3px;
+    border-color:#555555;
+    width: fit-content;
+  }
+
+.swatch .color {
+    border-style: inset;
+    border-width: 3px;
+    border-color:#ffffff;
+    cursor: pointer; 
+    aspect-ratio: 1;
+}
+
+input[type="color"]  {
+	-webkit-appearance: none;
+	width: 25px;
+	height: 25px;
+    border: none;
+    cursor: pointer; 
+}
+
+input[type="color"]::-webkit-color-swatch-wrapper {
+	padding: 0;
+    border: none;
+}
+input[type="color"]::-webkit-color-swatch {
+	border: none;
+    background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
+    background-size: 8px 8px;
+    background-position: top center;
+}

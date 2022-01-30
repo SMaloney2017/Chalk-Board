@@ -1,0 +1,16 @@
+html, body {
+  margin: 0;
+  font-family: 'Segoe UI';
+}
+
+body {
+  background-color: #f5f5db;
+}
+
+.lobby {
+  margin: auto;
+  padding: 0 10px 0 10px;
+  width: 1500px;
+  background-color: #8d816b;
+  overflow-y: hidden;
+}

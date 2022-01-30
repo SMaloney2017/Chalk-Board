@@ -1,3 +1,4 @@
+import "../../CSS/Canvas.css";
 import { useEffect, useRef, useState } from "react";
 
 function Canvas(props) { 
@@ -44,14 +45,20 @@ function Canvas(props) {
   
   return(
     <>
+      <div className="chalkboard">
+        <div className="text">
+          <div className="url"/>
+          <div className="arrow"/>
+        </div>
       <canvas
         onMouseDown={startPainting}
         onMouseUp={stopPainting}
         onMouseMove={paintCanvas}
-        width={`1000px`}
+        width={`1500px`}
         height={`750px`}
         ref={canvasRef}
       />
+      </div>
     </>
   )
 }
