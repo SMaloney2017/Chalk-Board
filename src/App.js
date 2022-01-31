@@ -17,7 +17,6 @@ function App() {
           lineColor={lineColor}
         />
         <Pallete
-          lineWidth={lineWidth}
           setLineColor={setLineColor}
           setLineWidth={setLineWidth}
           setChalkboardColor={setChalkboardColor}

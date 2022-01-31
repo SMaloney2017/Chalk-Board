@@ -2,7 +2,7 @@ import "../../CSS/Pallete.css"
 import React from "react";
 import { BiBrush, BiChalkboard } from "react-icons/bi";
 
-const Pallete = ({ lineWidth, setLineColor, setLineWidth, setChalkboardColor }) => {
+const Pallete = ({setLineColor, setLineWidth, setChalkboardColor }) => {
   return (
     <>
       <div className="pallete">
