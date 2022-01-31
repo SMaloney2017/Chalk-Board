@@ -48,7 +48,6 @@ function Canvas({lineColor, lineWidth, chalkboardColor}) {
       <div className="chalkboard" style={{backgroundColor: chalkboardColor}}>
         <div className="text">
           <div className="url"/>
-          <div className="arrow"/>
         </div>
       <canvas
         onMouseDown={startPainting}

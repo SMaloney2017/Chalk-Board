@@ -13,16 +13,6 @@
     pointer-events: none;
     padding: 10px;
 }
-.chalkboard .text .arrow {
-    display: inline-block;
-    width: 75px;
-    height: 50px;
-    background-image: url(../Resources/Chalkboard-text-arrow.png);
-    background-size: 55px;
-    background-repeat: no-repeat;
-    transform: rotate(-10deg);
-    pointer-events: none;
-}
 
 .chalkboard .text .url{
     display: inline-block;
