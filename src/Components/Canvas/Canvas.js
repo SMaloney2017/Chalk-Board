@@ -1,7 +1,7 @@
 import "../../CSS/Canvas.css";
 import { useEffect, useRef, useState } from "react";
 
-function Canvas(props) { 
+function Canvas({lineColor, lineWidth, chalkboardColor}) { 
     const canvasRef = useRef(null);
     const ctxRef = useRef(null);
     const [isPainting, setIsPainting] = useState(false);
@@ -12,11 +12,11 @@ function Canvas(props) {
   
       ctx.lineCap = "round";
       ctx.lineJoin = "round";
-      ctx.strokeStyle = props.lineColor;
-      ctx.lineWidth = props.lineWidth;
+      ctx.strokeStyle = lineColor;
+      ctx.lineWidth = lineWidth;
       ctx.globalAlpha = 1;
       ctxRef.current = ctx;
-    }, [props.lineColor, props.lineWidth]);
+    }, [lineColor, lineWidth]);
   
     const startPainting = (event) => {
       ctxRef.current.beginPath();
@@ -45,7 +45,7 @@ function Canvas(props) {
   
   return(
     <>
-      <div className="chalkboard">
+      <div className="chalkboard" style={{backgroundColor: chalkboardColor}}>
         <div className="text">
           <div className="url"/>
           <div className="arrow"/>

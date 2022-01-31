@@ -1,8 +1,8 @@
 import "../../CSS/Pallete.css"
 import React from "react";
 import { BiBrush, BiChalkboard } from "react-icons/bi";
-  
-const Pallete = ({ setLineColor, setLineWidth }) => {
+
+const Pallete = ({ lineWidth, setLineColor, setLineWidth, setChalkboardColor }) => {
   return (
     <>
       <div className="pallete">
@@ -17,7 +17,17 @@ const Pallete = ({ setLineColor, setLineWidth }) => {
           <div className="color" style={{backgroundColor: "cyan"}} onClick={(e) => {setLineColor("cyan")}}/>
           <div className="color" style={{backgroundColor: "blue"}} onClick={(e) => {setLineColor("blue")}}/>
           <div className="color" style={{backgroundColor: "purple"}} onClick={(e) => {setLineColor("purple")}}/>
-          <input type="color" onChange={(e) => {setLineColor(e.target.value); }}/>
+          <input type="color" onChange={(e) => {setLineColor(e.target.value)}}/>
+        </div>
+        <div className="brush">
+          <input type="range" min={1} max={20} defaultValue={3} onChange={(e) => {setLineWidth(e.target.value)}}/>
+        </div>
+        <div className="blackboard">
+          <BiChalkboard style={{fontSize: "25px", color:"white"}}/>
+          <div className="color" style={{backgroundColor: "#354d42"}} onClick={(e) => {setChalkboardColor("#354d42")}}/>
+          <div className="color" style={{backgroundColor: "#181818"}} onClick={(e) => {setChalkboardColor("#181818")}}/>
+          <div className="color" style={{backgroundColor: "#432323"}} onClick={(e) => {setChalkboardColor("#432323")}}/>
+          <input type="color" onChange={(e) => {setChalkboardColor(e.target.value)}}/>
         </div>
       </div>
     </>
