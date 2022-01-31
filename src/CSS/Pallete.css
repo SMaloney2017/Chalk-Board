@@ -20,7 +20,7 @@
     height: 25px;
     padding: 5px;
     display: grid;
-    grid-template-columns: 25px 25px 25px 25px 25px 25px 25px 25px 25px 25px 25px;
+    grid-template-columns: 25px 25px 25px 25px 25px 25px 25px 25px 25px 25px 25px 25px;
     grid-gap: 5px;
     background-color: #1b1b1b;
     border-style: ridge;

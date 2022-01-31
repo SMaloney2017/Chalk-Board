@@ -1,47 +1,48 @@
 import "../../CSS/Canvas.css";
 import { useEffect, useRef, useState } from "react";
 
-function Canvas({lineColor, lineWidth, chalkboardColor}) { 
-    const canvasRef = useRef(null);
-    const ctxRef = useRef(null);
-    const [isPainting, setIsPainting] = useState(false);
+function Canvas({lineColor, lineWidth, chalkboardColor, isErasing}) { 
+  const canvasRef = useRef(null);
+  const ctxRef = useRef(null);
+  const [isPainting, setIsPainting] = useState(false);
   
-    useEffect(() => {
-      const canvas = canvasRef.current;
-      const ctx = canvas.getContext("2d");
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = lineColor;
+    ctx.lineWidth = lineWidth;
+    ctx.globalAlpha = 1;
+    ctx.globalCompositeOperation = isErasing ? "destination-out" : "source-over"
+    ctxRef.current = ctx;
+  }, [lineColor, lineWidth, isErasing]);
   
-      ctx.lineCap = "round";
-      ctx.lineJoin = "round";
-      ctx.strokeStyle = lineColor;
-      ctx.lineWidth = lineWidth;
-      ctx.globalAlpha = 1;
-      ctxRef.current = ctx;
-    }, [lineColor, lineWidth]);
+  const startPainting = (event) => {
+    ctxRef.current.beginPath();
+    ctxRef.current.moveTo(
+      event.nativeEvent.offsetX,
+      event.nativeEvent.offsetY
+    );
+    setIsPainting(true);
+  };
   
-    const startPainting = (event) => {
-      ctxRef.current.beginPath();
-      ctxRef.current.moveTo(
-        event.nativeEvent.offsetX,
-        event.nativeEvent.offsetY
-      );
-      setIsPainting(true);
-    };
+  const stopPainting = () => {
+    ctxRef.current.closePath();
+    setIsPainting(false);
+  };
   
-    const stopPainting = () => {
-      ctxRef.current.closePath();
-      setIsPainting(false);
-    };
-  
-    const paintCanvas = (event) => {
-      if (!isPainting) {
-        return;
-      }
-      ctxRef.current.lineTo(
-        event.nativeEvent.offsetX,
-        event.nativeEvent.offsetY
-      );
-      ctxRef.current.stroke();
-    };
+  const paintCanvas = (event) => {
+    if (!isPainting) {
+      return;
+    }
+    ctxRef.current.lineTo(
+      event.nativeEvent.offsetX,
+      event.nativeEvent.offsetY
+    );
+    ctxRef.current.stroke();
+  };
   
   return(
     <>
