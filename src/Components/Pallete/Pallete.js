@@ -33,8 +33,8 @@ const Pallete = ({setChalkboardColor, context}) => {
     <>
       <div className="pallete">
         <div className="swatch">
-          <BiEraser id="eraser" style={{fontSize: "25px", color:"pink"}} onClick={(e) => {toggleEraser()}}/>
-          <BiBrush id="brush" style={{fontSize: "25px", color:"white"}} onClick={(e) => {toggleBrush()}}/>
+          <BiEraser id="eraser" style={{fontSize: "25px", color: "pink", cursor: "pointer"}} onClick={(e) => {toggleEraser()}}/>
+          <BiBrush id="brush" style={{fontSize: "25px", color: "white", cursor: "pointer"}} onClick={(e) => {toggleBrush()}}/>
           <div className="color" style={{backgroundColor: "black"}} onClick={(e) => {toggleStrokeStyle("black")}}/>
           <div className="color" style={{backgroundColor: "grey"}} onClick={(e) => {toggleStrokeStyle("grey")}}/>
           <div className="color" style={{backgroundColor: "white"}} onClick={(e) => {toggleStrokeStyle("white")}}/>
