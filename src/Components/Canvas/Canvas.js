@@ -1,7 +1,7 @@
 import "../../CSS/Canvas.css";
 import { useEffect, useRef, useState } from "react";
 
-function Canvas({chalkboardColor, isErasing, setContext}) { 
+function Canvas({chalkboardColor, setContext}) { 
   const canvasRef = useRef(null);
   const ctxRef = useRef(null);
   const [isPainting, setIsPainting] = useState(false);
@@ -14,7 +14,7 @@ function Canvas({chalkboardColor, isErasing, setContext}) {
     ctx.lineJoin = "round";
     ctx.globalAlpha = 1;
     ctxRef.current = ctx;
-  }, [setContext, isErasing]);
+  }, [setContext]);
 
   const startPainting = (event) => {
     ctxRef.current.beginPath();

@@ -16,9 +16,17 @@ const Pallete = ({setChalkboardColor, context}) => {
     context.globalCompositeOperation = "destination-out";
   }
   
-  const toggleColor = (e) => {
+  const toggleStrokeStyle = (e) => {
     toggleBrush(e);
     context.strokeStyle = e;
+  }
+
+  const toggleLineWidth = (e) => {
+    context.lineWidth = e;
+  }
+
+  const resetCanvas = (e) => {
+    context.clearRect(0, 0, 1500, 750)
   }
 
   return (
@@ -27,19 +35,19 @@ const Pallete = ({setChalkboardColor, context}) => {
         <div className="swatch">
           <BiEraser id="eraser" style={{fontSize: "25px", color:"pink"}} onClick={(e) => {toggleEraser()}}/>
           <BiBrush id="brush" style={{fontSize: "25px", color:"white"}} onClick={(e) => {toggleBrush()}}/>
-          <div className="color" style={{backgroundColor: "black"}} onClick={(e) => {toggleColor("black")}}/>
-          <div className="color" style={{backgroundColor: "grey"}} onClick={(e) => {toggleColor("grey")}}/>
-          <div className="color" style={{backgroundColor: "white"}} onClick={(e) => {toggleColor("white")}}/>
-          <div className="color" style={{backgroundColor: "red"}} onClick={(e) => {toggleColor("red")}}/>
-          <div className="color" style={{backgroundColor: "yellow"}} onClick={(e) => {toggleColor("yellow")}}/>
-          <div className="color" style={{backgroundColor: "green"}} onClick={(e) => {toggleColor("green")}}/>
-          <div className="color" style={{backgroundColor: "cyan"}} onClick={(e) => {toggleColor("cyan")}}/>
-          <div className="color" style={{backgroundColor: "blue"}} onClick={(e) => {toggleColor("blue")}}/>
-          <div className="color" style={{backgroundColor: "purple"}} onClick={(e) => {toggleColor("purple")}}/>
-          <input type="color" onChange={(e) => {toggleColor(e.target.value)}}/>
+          <div className="color" style={{backgroundColor: "black"}} onClick={(e) => {toggleStrokeStyle("black")}}/>
+          <div className="color" style={{backgroundColor: "grey"}} onClick={(e) => {toggleStrokeStyle("grey")}}/>
+          <div className="color" style={{backgroundColor: "white"}} onClick={(e) => {toggleStrokeStyle("white")}}/>
+          <div className="color" style={{backgroundColor: "red"}} onClick={(e) => {toggleStrokeStyle("red")}}/>
+          <div className="color" style={{backgroundColor: "yellow"}} onClick={(e) => {toggleStrokeStyle("yellow")}}/>
+          <div className="color" style={{backgroundColor: "green"}} onClick={(e) => {toggleStrokeStyle("green")}}/>
+          <div className="color" style={{backgroundColor: "cyan"}} onClick={(e) => {toggleStrokeStyle("cyan")}}/>
+          <div className="color" style={{backgroundColor: "blue"}} onClick={(e) => {toggleStrokeStyle("blue")}}/>
+          <div className="color" style={{backgroundColor: "purple"}} onClick={(e) => {toggleStrokeStyle("purple")}}/>
+          <input type="color" onChange={(e) => {toggleStrokeStyle(e.target.value)}}/>
         </div>
         <div className="brush">
-          <input type="range" min={1} max={20} defaultValue={1} onChange={(e) => {context.lineWidth = e.target.value}}/>
+          <input type="range" min={1} max={20} defaultValue={1} onChange={(e) => {toggleLineWidth(e.target.value)}}/>
         </div>
         <div className="blackboard">
           <BiChalkboard style={{fontSize: "25px", color:"white"}}/>
@@ -49,7 +57,7 @@ const Pallete = ({setChalkboardColor, context}) => {
           <input type="color" onChange={(e) => {setChalkboardColor(e.target.value)}}/>
         </div>
         <div className="reset-button ">
-          <FaTrashAlt onClick={(e) => {context.clearRect(0, 0, 1500, 750)}}/>
+          <FaTrashAlt onClick={(e) => {resetCanvas(e)}}/>
         </div>
       </div>
     </>
