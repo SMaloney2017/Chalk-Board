@@ -1,23 +1,24 @@
 import "../../CSS/Pallete.css"
 import React from "react";
 import { BiBrush, BiChalkboard, BiEraser } from "react-icons/bi";
+import { FaTrashAlt } from "react-icons/fa";
 
-const Pallete = ({setLineColor, setLineWidth, setChalkboardColor, setIsErasing}) => {
+const Pallete = ({setChalkboardColor, context}) => {
 
   const toggleBrush = (e) => {
-    setIsErasing(false);
     document.getElementById("brush").style["color"] = e;
     document.getElementById("eraser").style["color"] = "pink";
+    context.globalCompositeOperation = "source-over";
   }
   
   const toggleEraser = (e) => {
-    setIsErasing(true)
     document.getElementById("eraser").style["color"] = "deeppink";
+    context.globalCompositeOperation = "destination-out";
   }
   
   const toggleColor = (e) => {
     toggleBrush(e);
-    setLineColor(e);
+    context.strokeStyle = e;
   }
 
   return (
@@ -38,7 +39,7 @@ const Pallete = ({setLineColor, setLineWidth, setChalkboardColor, setIsErasing})
           <input type="color" onChange={(e) => {toggleColor(e.target.value)}}/>
         </div>
         <div className="brush">
-          <input type="range" min={1} max={20} defaultValue={3} onChange={(e) => {setLineWidth(e.target.value)}}/>
+          <input type="range" min={1} max={20} defaultValue={1} onChange={(e) => {context.lineWidth = e.target.value}}/>
         </div>
         <div className="blackboard">
           <BiChalkboard style={{fontSize: "25px", color:"white"}}/>
@@ -46,6 +47,9 @@ const Pallete = ({setLineColor, setLineWidth, setChalkboardColor, setIsErasing})
           <div className="color" style={{backgroundColor: "#181818"}} onClick={(e) => {setChalkboardColor("#181818")}}/>
           <div className="color" style={{backgroundColor: "#194050"}} onClick={(e) => {setChalkboardColor("#194050")}}/>
           <input type="color" onChange={(e) => {setChalkboardColor(e.target.value)}}/>
+        </div>
+        <div className="reset-button ">
+          <FaTrashAlt onClick={(e) => {context.clearRect(0, 0, 1500, 750)}}/>
         </div>
       </div>
     </>

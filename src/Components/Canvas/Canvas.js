@@ -1,8 +1,7 @@
 import "../../CSS/Canvas.css";
 import { useEffect, useRef, useState } from "react";
-import { FaTrashAlt } from "react-icons/fa";
 
-function Canvas({chalkboardColor, lineColor, lineWidth, isErasing}) { 
+function Canvas({chalkboardColor, isErasing, setContext}) { 
   const canvasRef = useRef(null);
   const ctxRef = useRef(null);
   const [isPainting, setIsPainting] = useState(false);
@@ -10,14 +9,12 @@ function Canvas({chalkboardColor, lineColor, lineWidth, isErasing}) {
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
+    setContext(ctx);
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
-    ctx.strokeStyle = lineColor;
-    ctx.lineWidth = lineWidth;
     ctx.globalAlpha = 1;
-    ctx.globalCompositeOperation = isErasing ? "destination-out" : "source-over"
     ctxRef.current = ctx;
-  }, [lineColor, lineWidth, isErasing]);
+  }, [setContext, isErasing]);
 
   const startPainting = (event) => {
     ctxRef.current.beginPath();
@@ -44,23 +41,13 @@ function Canvas({chalkboardColor, lineColor, lineWidth, isErasing}) {
     ctxRef.current.stroke();
   };
 
-  const resetCanvas =() => {
-    var canvas = document.getElementById('canvas'),
-    ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-  };
-
   return(
     <>
       <div className="chalkboard" style={{backgroundColor: chalkboardColor}}>
         <div className="text">
           <div className="url"/>
         </div>
-        <div className="reset-button ">
-          <FaTrashAlt onClick={(e) => {resetCanvas()}}/>
-        </div>
         <canvas
-          id="canvas"
           onMouseDown={startPainting}
           onMouseUp={stopPainting}
           onMouseMove={paintCanvas}

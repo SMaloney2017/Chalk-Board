@@ -4,25 +4,19 @@ import Canvas from "./Components/Canvas/Canvas.js"
 import Pallete from "./Components/Pallete/Pallete.js"
 
 function App() {
-  const [lineWidth, setLineWidth] = useState(2);
-  const [lineColor, setLineColor] = useState("white");
   const [chalkboardColor, setChalkboardColor] = useState("#354d42");
-  const [isErasing, setIsErasing] = useState(false);
+  const [context, setContext] = useState(false);
 
   return (
     <>
       <div className="lobby">
         <Canvas
           chalkboardColor={chalkboardColor}
-          lineWidth={lineWidth}
-          lineColor={lineColor}
-          isErasing={isErasing}
+          setContext={setContext}
         />
         <Pallete
-          setLineColor={setLineColor}
-          setLineWidth={setLineWidth}
           setChalkboardColor={setChalkboardColor}
-          setIsErasing={setIsErasing}
+          context={context}
         />
       </div>
     </>

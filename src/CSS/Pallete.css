@@ -14,7 +14,25 @@
     border-radius: 3px;
     border-color:#555555;
     float: left;
-  }
+}
+
+.reset-button {
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 25px;
+    background-color: #1b1b1b;
+    border-style: ridge;
+    border-width: 4px;
+    border-radius: 3px;
+    border-color:#555555;
+    color: crimson;
+    font-size: 25px;
+    float: left;
+}
+
+.reset-button:hover {
+    color: red;
+}
 
 .swatch {
     height: 25px;
@@ -28,7 +46,7 @@
     border-radius: 3px;
     border-color:#555555;
     float: left;
-  }
+}
 
 .swatch .color {
     border-style: inset;
