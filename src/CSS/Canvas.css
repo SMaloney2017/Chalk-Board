@@ -23,3 +23,16 @@
     background-repeat: no-repeat;
     pointer-events: none;
 }
+
+.reset-button {
+    position: absolute;
+    top: 720px;
+    padding: 5px;
+    font-size: 25px;
+    color: #dc143c;
+    cursor: pointer;
+}
+
+.reset-button :hover {
+    color: #ff0000;
+}

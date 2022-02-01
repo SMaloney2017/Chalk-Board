@@ -3,29 +3,28 @@ import React from "react";
 import { BiBrush, BiChalkboard, BiEraser } from "react-icons/bi";
 
 const Pallete = ({setLineColor, setLineWidth, setChalkboardColor, setIsErasing}) => {
-  
+
   const toggleBrush = (e) => {
-    setIsErasing(false)
+    setIsErasing(false);
     document.getElementById("brush").style["color"] = e;
-    document.getElementById("eraser").style["color"] = "white";
+    document.getElementById("eraser").style["color"] = "pink";
   }
   
   const toggleEraser = (e) => {
     setIsErasing(true)
-    document.getElementById("brush").style["color"] = "white";
-    document.getElementById("eraser").style["color"] = "pink";
+    document.getElementById("eraser").style["color"] = "deeppink";
   }
   
   const toggleColor = (e) => {
-    toggleBrush(e)
-    setLineColor(e)
+    toggleBrush(e);
+    setLineColor(e);
   }
 
   return (
     <>
       <div className="pallete">
         <div className="swatch">
-          <BiEraser id="eraser" style={{fontSize: "25px", color:"white"}} onClick={(e) => {toggleEraser()}}/>
+          <BiEraser id="eraser" style={{fontSize: "25px", color:"pink"}} onClick={(e) => {toggleEraser()}}/>
           <BiBrush id="brush" style={{fontSize: "25px", color:"white"}} onClick={(e) => {toggleBrush()}}/>
           <div className="color" style={{backgroundColor: "black"}} onClick={(e) => {toggleColor("black")}}/>
           <div className="color" style={{backgroundColor: "grey"}} onClick={(e) => {toggleColor("grey")}}/>
@@ -45,7 +44,7 @@ const Pallete = ({setLineColor, setLineWidth, setChalkboardColor, setIsErasing})
           <BiChalkboard style={{fontSize: "25px", color:"white"}}/>
           <div className="color" style={{backgroundColor: "#354d42"}} onClick={(e) => {setChalkboardColor("#354d42")}}/>
           <div className="color" style={{backgroundColor: "#181818"}} onClick={(e) => {setChalkboardColor("#181818")}}/>
-          <div className="color" style={{backgroundColor: "#432323"}} onClick={(e) => {setChalkboardColor("#432323")}}/>
+          <div className="color" style={{backgroundColor: "#194050"}} onClick={(e) => {setChalkboardColor("#194050")}}/>
           <input type="color" onChange={(e) => {setChalkboardColor(e.target.value)}}/>
         </div>
       </div>
