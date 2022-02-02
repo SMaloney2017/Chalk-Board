@@ -1,0 +1,11 @@
+.channel {
+    position: relative;
+    z-index: 1;
+    top: 10px;
+    left: 10px;
+    width: 300px;
+    height: 750px;
+    background-image: linear-gradient(to bottom, #00000000, #000000b2);
+    pointer-events: none;
+    float: right;
+}

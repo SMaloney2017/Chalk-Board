@@ -47,7 +47,7 @@ const Pallete = ({setChalkboardColor, context}) => {
           <input type="color" onChange={(e) => {toggleStrokeStyle(e.target.value)}}/>
         </div>
         <div className="brush">
-          <input type="range" min={1} max={20} defaultValue={1} onChange={(e) => {toggleLineWidth(e.target.value)}}/>
+          <input type="range" min={1} max={20} defaultValue={1} orient="vertical" onChange={(e) => {toggleLineWidth(e.target.value)}}/>
         </div>
         <div className="blackboard">
           <BiChalkboard style={{fontSize: "25px", color:"white"}}/>

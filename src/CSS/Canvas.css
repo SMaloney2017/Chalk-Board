@@ -1,4 +1,5 @@
 .chalkboard {
+    position: absolute;
     width: 1500px;
     height: 750px;
     box-shadow: 0 0 150px #000000cb inset;
@@ -11,7 +12,7 @@
 .chalkboard .text {
     position: absolute;
     pointer-events: none;
-    padding: 10px;
+    padding: 15px;
 }
 
 .chalkboard .text .url{
