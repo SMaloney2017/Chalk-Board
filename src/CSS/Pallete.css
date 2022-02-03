@@ -1,7 +1,7 @@
 .pallete {
     position: absolute;
     padding: 10px;
-    top: 70px;
+    top: 100px;
 }
 
 .brush {
@@ -10,11 +10,6 @@
     padding: 5px;
     display: grid;
     grid-template-columns: 75px;
-    background-color: #1b1b1b;
-    border-style: inset;
-    border-width: 5px;
-    border-radius: 3px;
-    border-color:#555555;
 }
 
 .reset-button {
@@ -22,11 +17,6 @@
     padding: 5px;
     display: grid;
     grid-template-columns: 25px;
-    background-color: #1b1b1b;
-    border-style: inset;
-    border-width: 5px;
-    border-radius: 3px;
-    border-color:#555555;
     color: crimson;
     font-size: 25px;
     cursor: pointer;
@@ -42,11 +32,6 @@
     display: grid;
     grid-template-columns: 25px;
     grid-gap: 5px;
-    background-color: #1b1b1b;
-    border-style: inset;
-    border-width: 5px;
-    border-radius: 3px;
-    border-color:#555555;
 }
 
 .swatch .color {
@@ -63,12 +48,7 @@
     display: grid;
     grid-template-columns: 25px;
     grid-gap: 5px;
-    background-color: #1b1b1b;
-    border-style: inset;
-    border-width: 5px;
-    border-radius: 3px;
-    border-color:#555555;
-  }
+}
 
 .blackboard .color {
     border-style: inset;
@@ -78,30 +58,26 @@
     aspect-ratio: 1;
 }
 
-input[type="color"] {
-	-webkit-appearance: none;
-	width: 25px;
-	height: 25px;
-    border: none;
+.custom {
+    width: 19px;
+    height: 19px;
+    border-style: inset;
+    border-width: 3px;
+    background-color: #000000;
+    background: repeating-conic-gradient(#808080 0% 25%, #000000 0% 50%) 
+    50% / 10px 10px;
+    border-color:#ffffff;
     cursor: pointer; 
 }
 
-input[type="color"]::-webkit-color-swatch-wrapper {
-	padding: 0;
-    border: none;
-}
-
-input[type="color"]::-webkit-color-swatch {
-	border: none;
-    background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
-    background-size: 8px 8px;
-    background-position: top center;
+input[type="color"] {
+    visibility: hidden;
 }
 
 input[type="range"] {
     -webkit-appearance: none;
     cursor: pointer;
-    background-color: #ffffff00;
+    background-color: #00000000;
     width: 75px;
     transform: rotate(270deg);
     margin-left: -25px;

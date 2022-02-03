@@ -44,7 +44,7 @@ const Pallete = ({setChalkboardColor, context}) => {
           <div className="color" style={{backgroundColor: "cyan"}} onClick={(e) => {toggleStrokeStyle("cyan")}}/>
           <div className="color" style={{backgroundColor: "blue"}} onClick={(e) => {toggleStrokeStyle("blue")}}/>
           <div className="color" style={{backgroundColor: "purple"}} onClick={(e) => {toggleStrokeStyle("purple")}}/>
-          <input type="color" onChange={(e) => {toggleStrokeStyle(e.target.value)}}/>
+          <label className="custom"><input type="color" onChange={(e) => {toggleStrokeStyle(e.target.value)}}/></label>
         </div>
         <div className="brush">
           <input type="range" min={1} max={20} defaultValue={1} orient="vertical" onChange={(e) => {toggleLineWidth(e.target.value)}}/>
@@ -54,7 +54,7 @@ const Pallete = ({setChalkboardColor, context}) => {
           <div className="color" style={{backgroundColor: "#354d42"}} onClick={(e) => {setChalkboardColor("#354d42")}}/>
           <div className="color" style={{backgroundColor: "#181818"}} onClick={(e) => {setChalkboardColor("#181818")}}/>
           <div className="color" style={{backgroundColor: "#194050"}} onClick={(e) => {setChalkboardColor("#194050")}}/>
-          <input type="color" onChange={(e) => {setChalkboardColor(e.target.value)}}/>
+          <label className="custom"><input type="color" onChange={(e) => {setChalkboardColor(e.target.value)}}/></label>
         </div>
         <div className="reset-button ">
           <FaTrashAlt onClick={(e) => {resetCanvas(e)}}/>
