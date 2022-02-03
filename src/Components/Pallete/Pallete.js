@@ -2,6 +2,7 @@ import "../../CSS/Pallete.css"
 import React from "react";
 import { BiBrush, BiChalkboard, BiEraser } from "react-icons/bi";
 import { FaTrashAlt } from "react-icons/fa";
+import { MdUndo, MdRedo } from "react-icons/md";
 
 const Pallete = ({setChalkboardColor, context}) => {
 
@@ -32,9 +33,13 @@ const Pallete = ({setChalkboardColor, context}) => {
   return (
     <>
       <div className="pallete">
-        <div className="swatch">
+        <div className="tools">
+          <MdUndo style={{fontSize: "25px", color: "white", cursor: "pointer"}}/>
+          <MdRedo style={{fontSize: "25px", color: "white", cursor: "pointer"}}/>
           <BiEraser id="eraser" style={{fontSize: "25px", color: "pink", cursor: "pointer"}} onClick={(e) => {toggleEraser()}}/>
           <BiBrush id="brush" style={{fontSize: "25px", color: "white", cursor: "pointer"}} onClick={(e) => {toggleBrush()}}/>
+        </div>
+        <div className="swatch">
           <div className="color" style={{backgroundColor: "black"}} onClick={(e) => {toggleStrokeStyle("black")}}/>
           <div className="color" style={{backgroundColor: "grey"}} onClick={(e) => {toggleStrokeStyle("grey")}}/>
           <div className="color" style={{backgroundColor: "white"}} onClick={(e) => {toggleStrokeStyle("white")}}/>

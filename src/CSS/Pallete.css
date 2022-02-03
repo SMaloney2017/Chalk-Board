@@ -1,29 +1,19 @@
 .pallete {
     position: absolute;
     padding: 10px;
-    top: 100px;
-}
-
-.brush {
-    height: 75px;
-    width: 25px;
-    padding: 5px;
-    display: grid;
-    grid-template-columns: 75px;
-}
-
-.reset-button {
-    width: inherit;
-    padding: 5px;
-    display: grid;
-    grid-template-columns: 25px;
-    color: crimson;
-    font-size: 25px;
-    cursor: pointer;
+    top: 35px;
 }
 
 .reset-button:hover {
     color: red;
+}
+
+.tools {
+    width: inherit;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 25px;
+    grid-gap: 5px;
 }
 
 .swatch {
@@ -42,6 +32,14 @@
     aspect-ratio: 1;
 }
 
+.brush {
+    height: 75px;
+    width: 25px;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 75px;
+}
+
 .blackboard{
     width: inherit;
     padding: 5px;
@@ -56,6 +54,16 @@
     border-color:#ffffff;
     cursor: pointer; 
     aspect-ratio: 1;
+}
+
+.reset-button {
+    width: inherit;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 25px;
+    color: crimson;
+    font-size: 25px;
+    cursor: pointer;
 }
 
 .custom {
