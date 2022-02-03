@@ -3,9 +3,42 @@
     z-index: 1;
     top: 10px;
     left: 10px;
-    width: 300px;
+    width: 350px;
     height: 750px;
     background-image: linear-gradient(to bottom, #00000000, #000000b2);
     pointer-events: none;
     float: right;
 }
+
+.submit-wrapper {
+    float: right;
+    padding: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    cursor: pointer;
+    pointer-events: visible;
+}
+ 
+.submit {
+    width: 100px;
+    height: 30px;
+    background-image: linear-gradient(to top right, #1a1a1a 0%, #202020 100%); 
+    border-radius: 3px;
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 0px 1px 0px #ffffff4d, 0px -1px 0px #000000b3;
+    line-height: 210%;
+    box-shadow:
+        0 1px 1px rgba(0,0,0,0.15), 
+        0 2px 2px rgba(0,0,0,0.15), 
+        0 4px 4px rgba(0,0,0,0.15);
+}
+
+.submit:hover {
+    transform: translateY(1px);
+    box-shadow: 0 1px 1px #00000026;
+    transition: 0.15s ease;
+}
+

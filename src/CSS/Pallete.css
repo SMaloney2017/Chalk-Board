@@ -4,10 +4,6 @@
     top: 35px;
 }
 
-.reset-button:hover {
-    color: red;
-}
-
 .tools {
     width: inherit;
     padding: 5px;
@@ -64,6 +60,11 @@
     color: crimson;
     font-size: 25px;
     cursor: pointer;
+}
+
+.reset-button:hover {
+    color: #c50027;
+    transition: 100ms;
 }
 
 .custom {
