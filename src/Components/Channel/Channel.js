@@ -6,6 +6,7 @@ const Channel = () => {
     <>
       <div id="channel">
         <div id="submit-wrapper">
+          <div id="input"><input type="text"/></div>
           <div id="submit">Submit</div>
         </div>
       </div>
