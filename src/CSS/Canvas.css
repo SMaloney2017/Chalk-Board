@@ -3,10 +3,7 @@
     width: 1500px;
     height: 750px;
     box-shadow: 0 0 150px #000000cb inset;
-    border-style: ridge;
-    border-width: 10px;
-    border-radius: 5px;
-    border-color:#926d53;
+    padding: 5px;
 }
 
 .chalkboard .text {
