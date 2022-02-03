@@ -4,9 +4,9 @@ import React from "react";
 const Channel = () => {
   return (
     <>
-      <div className="channel">
-        <div className="submit-wrapper">
-          <div className="submit">Submit</div>
+      <div id="channel">
+        <div id="submit-wrapper">
+          <div id="submit">Submit</div>
         </div>
       </div>
     </>

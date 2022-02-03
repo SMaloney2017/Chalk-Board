@@ -43,8 +43,8 @@ function Canvas({chalkboardColor, setContext}) {
 
   return(
     <>
-      <div className="chalkboard" style={{backgroundColor: chalkboardColor}}>
-        <div className="url"/>
+      <div id="chalkboard" style={{backgroundColor: chalkboardColor}}>
+        <div id="url"/>
         <canvas
           onMouseDown={startPainting}
           onMouseUp={stopPainting}

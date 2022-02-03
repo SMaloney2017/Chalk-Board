@@ -7,7 +7,7 @@ body {
   background-color: #f5f5db;
 }
 
-.lobby {
+#lobby {
   margin: auto;
   width: 1500px;
 }

@@ -32,12 +32,12 @@ const Pallete = ({setChalkboardColor, context}) => {
 
   return (
     <>
-      <div className="pallete">
-        <div className="tools">
+      <div id="pallete">
+        <div className="swatch">
           <MdUndo style={{fontSize: "25px", color: "white", cursor: "pointer"}}/>
           <MdRedo style={{fontSize: "25px", color: "white", cursor: "pointer"}}/>
           <BiEraser id="eraser" style={{fontSize: "25px", color: "pink", cursor: "pointer"}} onClick={(e) => {toggleEraser()}}/>
-          <BiBrush id="brush" style={{fontSize: "25px", color: "white", cursor: "pointer"}} onClick={(e) => {toggleBrush()}}/>
+          <BiBrush id="brush" style={{fontSize: "25px", color: "black", cursor: "pointer"}} onClick={(e) => {toggleBrush()}}/>
         </div>
         <div className="swatch">
           <div className="color" style={{backgroundColor: "black"}} onClick={(e) => {toggleStrokeStyle("black")}}/>
@@ -51,17 +51,17 @@ const Pallete = ({setChalkboardColor, context}) => {
           <div className="color" style={{backgroundColor: "purple"}} onClick={(e) => {toggleStrokeStyle("purple")}}/>
           <label className="custom"><input type="color" onChange={(e) => {toggleStrokeStyle(e.target.value)}}/></label>
         </div>
-        <div className="brush">
+        <div id="brush-weight">
           <input type="range" min={1} max={20} defaultValue={1} orient="vertical" onChange={(e) => {toggleLineWidth(e.target.value)}}/>
         </div>
-        <div className="blackboard">
+        <div className="swatch">
           <BiChalkboard style={{fontSize: "25px", color:"white"}}/>
           <div className="color" style={{backgroundColor: "#354d42"}} onClick={(e) => {setChalkboardColor("#354d42")}}/>
           <div className="color" style={{backgroundColor: "#181818"}} onClick={(e) => {setChalkboardColor("#181818")}}/>
           <div className="color" style={{backgroundColor: "#194050"}} onClick={(e) => {setChalkboardColor("#194050")}}/>
           <label className="custom"><input type="color" onChange={(e) => {setChalkboardColor(e.target.value)}}/></label>
         </div>
-        <div className="reset-button ">
+        <div id="reset-button">
           <FaTrashAlt onClick={(e) => {resetCanvas(e)}}/>
         </div>
       </div>

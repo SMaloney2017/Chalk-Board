@@ -1,4 +1,4 @@
-.chalkboard {
+#chalkboard {
     position: absolute;
     width: 1500px;
     height: 750px;
@@ -6,7 +6,7 @@
     padding: 5px;
 }
 
-.chalkboard .url {
+#chalkboard #url {
     position: absolute;
     margin-top: 5px;
     margin-left: 10px;

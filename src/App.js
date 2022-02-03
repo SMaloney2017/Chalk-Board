@@ -10,7 +10,7 @@ function App() {
 
   return (
     <>
-      <div className="lobby">
+      <div id="lobby">
         <Channel />
         <Canvas
           chalkboardColor={chalkboardColor}

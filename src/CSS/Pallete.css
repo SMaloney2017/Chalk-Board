@@ -1,15 +1,7 @@
-.pallete {
+#pallete {
     position: absolute;
     padding: 10px;
     top: 35px;
-}
-
-.tools {
-    width: inherit;
-    padding: 5px;
-    display: grid;
-    grid-template-columns: 25px;
-    grid-gap: 5px;
 }
 
 .swatch {
@@ -28,7 +20,7 @@
     aspect-ratio: 1;
 }
 
-.brush {
+#brush-weight {
     height: 75px;
     width: 25px;
     padding: 5px;
@@ -36,23 +28,7 @@
     grid-template-columns: 75px;
 }
 
-.blackboard{
-    width: inherit;
-    padding: 5px;
-    display: grid;
-    grid-template-columns: 25px;
-    grid-gap: 5px;
-}
-
-.blackboard .color {
-    border-style: inset;
-    border-width: 3px;
-    border-color:#ffffff;
-    cursor: pointer; 
-    aspect-ratio: 1;
-}
-
-.reset-button {
+#reset-button {
     width: inherit;
     padding: 5px;
     display: grid;
@@ -62,7 +38,7 @@
     cursor: pointer;
 }
 
-.reset-button:hover {
+#reset-button:hover {
     color: #c50027;
     transition: 100ms;
 }
