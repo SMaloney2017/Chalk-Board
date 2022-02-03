@@ -39,6 +39,7 @@
 .submit:hover {
     transform: translateY(1px);
     box-shadow: 0 1px 1px #00000026;
+    color: #00ff6a;
     transition: 0.15s ease;
 }
 
