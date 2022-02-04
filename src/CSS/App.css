@@ -10,4 +10,5 @@ body {
 #lobby {
   margin: auto;
   width: 1500px;
+  overflow: hidden;
 }
