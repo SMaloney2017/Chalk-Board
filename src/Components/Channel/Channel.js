@@ -17,6 +17,9 @@ const Channel = () => {
           <div id="input"><input type="text"/></div>
           <div id="submit">Submit</div>
         </div>
+        <div id="messages">
+          
+        </div>
       </div>
     </>
   );
