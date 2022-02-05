@@ -17,11 +17,26 @@
 }
 
 #toggle-chat {
-    color: #1a1a1a;
-    font-size: 35px;
+    display: block;
+    width: 25px;
+    height: 20px;
+    padding: 5px;
+    background-image: linear-gradient(to top right, #1a1a1a 0%, #202020 100%); 
+    border-radius: 3px 0px 0px 3px;
+    color: #ffffff;
+    box-shadow:
+        0 1px 1px rgba(0,0,0,0.15), 
+        0 2px 2px rgba(0,0,0,0.15), 
+        0 4px 4px rgba(0,0,0,0.15);
     cursor: pointer;
     pointer-events: visible;
-    display: block;
+}
+
+#toggle-chat:hover {
+    transform: translateY(1px);
+    box-shadow: 0 1px 1px #00000026;
+    color: #00ff6a;
+    transition: 0.15s ease;
 }
 
 #toggle-chat:hover {
@@ -68,13 +83,13 @@
 
 #input {
     display: block;
+    z-index: 1;
     height: 30px;
     background: linear-gradient(to top right, #1a1a1a 0%, #202020 100%); 
     box-shadow:
         0 1px 1px rgba(0,0,0,0.15), 
         0 2px 2px rgba(0,0,0,0.15), 
         0 4px 4px rgba(0,0,0,0.15);
-    border-radius: 3px 0px 0px 3px; 
 }
 
 input[type=text] {
