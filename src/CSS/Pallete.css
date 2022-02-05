@@ -1,6 +1,15 @@
 #pallete {
     position: absolute;
-    padding: 10px;
+    padding: 5px 5px 10px 5px;
+    margin: 15px 0 0 5px;
+    height: 700px;
+    width: 35px;
+    background-image: linear-gradient(to top right, #1a1a1a 0%, #202020 100%); 
+    border-radius: 10px;
+    box-shadow:
+        0 1px 1px rgba(0,0,0,0.15), 
+        0 2px 2px rgba(0,0,0,0.15), 
+        0 4px 4px rgba(0,0,0,0.15);
 }
 
 .swatch {
