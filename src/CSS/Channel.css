@@ -29,7 +29,7 @@
         0 2px 2px rgba(0,0,0,0.15), 
         0 4px 4px rgba(0,0,0,0.15);
     cursor: pointer;
-    pointer-events: visible;
+    pointer-events: auto;
 }
 
 #toggle-chat:hover {
@@ -72,7 +72,7 @@
         0 1px 1px rgba(0,0,0,0.15), 
         0 2px 2px rgba(0,0,0,0.15), 
         0 4px 4px rgba(0,0,0,0.15);
-    pointer-events: visible;
+    pointer-events: auto;
 }
 
 #submit:hover {
@@ -102,11 +102,11 @@ input[type=text] {
     border: none;
     outline: none;
     box-sizing: border-box;
-    pointer-events: visible;
+    pointer-events: auto;
 }
 
 #messages-wrapper {
-    margin-top: -10px;
+    margin-top: 5px;
     margin-left: 5px;
     margin-right: 15px;
     height: 700px;
@@ -116,10 +116,12 @@ input[type=text] {
         0 1px 1px rgba(0,0,0,0.15), 
         0 2px 2px rgba(0,0,0,0.15), 
         0 4px 4px rgba(0,0,0,0.15);
-
+    overflow: auto;
+    pointer-events: auto;
 }
 
 .messages-list {
+    margin-top: -5px;
     word-wrap: break-word;
     padding-top: 10px;
 }
