@@ -7,11 +7,12 @@ import Channel from "./Components/Channel/Channel.js"
 function App() {
   const [chalkboardColor, setChalkboardColor] = useState("#354d42");
   const [context, setContext] = useState(false);
-
+  const [id, setId] = useState("TEST");
+  
   return (
     <>
       <div id="lobby">
-        <Channel />
+        <Channel id={id}/>
         <Canvas
           chalkboardColor={chalkboardColor}
           setContext={setContext}
