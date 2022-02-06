@@ -111,17 +111,19 @@ input[type=text] {
     margin-right: 15px;
     height: 700px;
     background-image: linear-gradient(to top right, #1a1a1a 0%, #202020 100%); 
-    border-radius: 15px;
+    border-radius: 10px;
     box-shadow:
         0 1px 1px rgba(0,0,0,0.15), 
         0 2px 2px rgba(0,0,0,0.15), 
         0 4px 4px rgba(0,0,0,0.15);
-    overflow: auto;
+    overflow-y: auto;
     pointer-events: auto;
 }
 
 .messages-list {
+    width: 275px;
     margin-top: -5px;
+    margin-left: -25px;
     word-wrap: break-word;
     padding-top: 10px;
 }
