@@ -10,7 +10,7 @@ function App() {
   const [id, setId] = useState("");
   
   const getExtension = (url) => {
-    setId(url.pathname.substring(1));
+    setId(url.pathname.slice(1)); /* Remove preceding '/' of pathname */
   }
 
   useEffect(() => {
