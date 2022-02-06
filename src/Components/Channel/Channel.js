@@ -1,6 +1,6 @@
 import "../../CSS/Channel.css";
 import { BiMessageAltDetail } from "react-icons/bi";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import useChannel from "./useChannel.js";
 
 const Channel = ({id}) => {
@@ -30,10 +30,11 @@ const Channel = ({id}) => {
           <div id="submit" onClick={handleSendMessage}>Submit</div>
         </div>
         <div id="messages-wrapper">
-          <ol className="messages-list">
+          <ol className="messages-list" style={{listStyle: "none", color: "teal"}}>
+            <li><span style={{color:"crimson"}}>[ADMIN]</span> Create or join an instance by adding an ID to the path of the URL!</li>
+            <li><span style={{color:"crimson"}}>[ADMIN]</span> (eg. http://localhost:3000/ID)</li>
             {messages.map((message, i) => (
               <li
-                style={{listStyle: "none"}}
                 key={i}
                 className={message.ownedByCurrentUser ? "my-message" : "received-message"}
               >
