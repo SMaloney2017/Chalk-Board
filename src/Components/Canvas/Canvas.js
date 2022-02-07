@@ -2,29 +2,61 @@ import "../../CSS/Canvas.css";
 import { useEffect, useRef, useState } from "react";
 import useCanvas from "./useCanvas.js"
 
-function Canvas({chalkboardColor, setContext, id}) { 
+function Canvas({chalkboardColor, lineWidth, globalCompositeOperation, strokeStyle, id}) { 
   const canvasRef = useRef(null);
   const ctxRef = useRef(null);
+  const { drawStrokes, sendStroke } = useCanvas(id);
   const [isPainting, setIsPainting] = useState(false);
 
-  const { strokes, sendStroke } = useCanvas(id);
-
   useEffect(() => {
+
     const newStroke = {};
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
-    setContext(ctx);    
+
+    ctx.lineWidth = lineWidth;
+    ctx.globalCompositeOperation = globalCompositeOperation;
+    ctx.strokeStyle = strokeStyle;
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
     ctx.globalAlpha = 1;
+
     ctxRef.current = ctx;
-    newStroke.weight = ctx.lineWidth;
-    newStroke.color = ctx.strokeStyle;
+
+    newStroke.weight = lineWidth;
+    newStroke.color = strokeStyle;
+    newStroke.globalCompositeOperation = globalCompositeOperation;;
+
+    const redrawCanvas = () => {
+      drawStrokes.map(stroke => (
+        stroke.ownedByCurrentUser ? null : drawStroke(stroke.body)
+      ))
+    };
+
+    const drawStroke = (newStroke, emit) => {
+      ctxRef.current.globalCompositeOperation = newStroke.globalCompositeOperation;
+      ctxRef.current.lineWidth = newStroke.weight;
+      ctxRef.current.strokeStyle = newStroke.color;
+      ctxRef.current.beginPath();
+      ctxRef.current.moveTo(
+        newStroke.x,
+        newStroke.y
+      );
+      ctxRef.current.lineTo(
+        newStroke.x1,
+        newStroke.y1
+      );
+      ctxRef.current.stroke();
+      ctxRef.current.closePath();
+      
+      if(!emit) { return; }
+      sendStroke(newStroke);
+    };
 
     const startPainting = (event) => {
       setIsPainting(true);
-      newStroke.x = event.offsetX || event.touches[0].offsetX;
-      newStroke.y = event.offsetY || event.touches[0].offsetY;
+      newStroke.x = event.offsetX;
+      newStroke.y = event.offsetY;
     };
     
     const stopPainting = (event) => {
@@ -35,38 +67,33 @@ function Canvas({chalkboardColor, setContext, id}) {
       if (!isPainting) {
         return;
       }
-      newStroke.x1 = event.offsetX || event.touches[0].offsetX;
-      newStroke.y1 = event.offsetY || event.touches[0].offsetY;
+      newStroke.x1 = event.offsetX;
+      newStroke.y1 = event.offsetY;
       drawStroke(newStroke, true);
-      newStroke.x = event.offsetX || event.touches[0].offsetX;
-      newStroke.y = event.offsetY || event.touches[0].offsetY;
+      newStroke.x = event.offsetX;
+      newStroke.y = event.offsetY;
     };
-    
-    const drawStroke = (newStroke, emit) => {
-      ctx.lineWidth = newStroke.weight;
-      ctx.strokeStyle = newStroke.color;
-      ctx.beginPath();
-      ctx.moveTo(
-        newStroke.x,
-        newStroke.y
-      );
-      ctx.lineTo(
-        newStroke.x1,
-        newStroke.y1
-      );
-      ctx.stroke();
-      ctx.closePath();
-  
-      if(!emit) { return; }
-      sendStroke(newStroke);
+
+    const limit = (callback, delay) => {
+      let previousCall = new Date().getTime();
+      return function() {
+        const time = new Date().getTime();
+
+        if ((time - previousCall) >= delay) {
+          previousCall = time;
+          callback.apply(null, arguments);
+        }
+      };
     };
 
     canvas.onmousedown = startPainting;
     canvas.onmouseup = stopPainting;
     canvas.onmouseout = stopPainting;
-    canvas.onmousemove = paintCanvas;
+    canvas.onmousemove = limit(paintCanvas, 10);
 
-  }, [setContext, isPainting, strokes, sendStroke]);
+    redrawCanvas()
+
+  }, [strokeStyle, lineWidth, globalCompositeOperation, isPainting, drawStrokes, sendStroke]);
 
   return(
     <>

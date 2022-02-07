@@ -5,7 +5,7 @@ const NEW_DRAW_EVENT = "newCanvasStroke";
 const SOCKET_SERVER_URL = "http://localhost:4000";
 
 const useCanvas = (id) => {
-  const [strokes, setStroke] = useState([]);
+  const [drawStrokes, setStroke] = useState([]);
   const socketRef = useRef();
   
   useEffect(() => {
@@ -19,7 +19,7 @@ const useCanvas = (id) => {
         ...stroke,
         ownedByCurrentUser: stroke.senderId === socketRef.current.id,
       };
-      setStroke((strokes) => [...strokes, incomingStroke]);
+      setStroke((drawStrokes) => [...drawStrokes, incomingStroke]);
     });
     return () => {
       socketRef.current.disconnect();
@@ -34,7 +34,7 @@ const useCanvas = (id) => {
     });
   };
 
-  return { strokes, sendStroke };
+  return { drawStrokes, sendStroke };
 };
 
 export default useCanvas;

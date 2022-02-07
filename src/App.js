@@ -6,11 +6,13 @@ import Channel from "./Components/Channel/Channel.js"
 
 function App() {
   const [chalkboardColor, setChalkboardColor] = useState("#354d42");
-  const [context, setContext] = useState(false);
+  const [strokeStyle, setStrokeStyle] = useState("#000000");
+  const [globalCompositeOperation, setGlobalCompositeOperation] = useState("source-over");
+  const [lineWidth, setLineWidth] = useState(3);
   const [id, setId] = useState("");
   
   const getExtension = (url) => {
-    setId(url.pathname.slice(1)); /* Remove preceding '/' of pathname */
+    setId(url.pathname.slice(1));
   }
 
   useEffect(() => {
@@ -23,12 +25,16 @@ function App() {
         <Channel id={id}/>
         <Canvas
           chalkboardColor={chalkboardColor}
-          setContext={setContext}
+          strokeStyle={strokeStyle}
+          globalCompositeOperation={globalCompositeOperation}
+          lineWidth={lineWidth}
           id={id}
         />
         <Pallete
           setChalkboardColor={setChalkboardColor}
-          context={context}
+          setStrokeStyle={setStrokeStyle}
+          setGlobalCompositeOperation={setGlobalCompositeOperation}
+          setLineWidth={setLineWidth}
         />
       </div>
     </>

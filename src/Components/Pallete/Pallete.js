@@ -4,30 +4,30 @@ import { BiBrush, BiChalkboard, BiEraser } from "react-icons/bi";
 import { FaTrashAlt } from "react-icons/fa";
 import { MdUndo, MdRedo } from "react-icons/md";
 
-const Pallete = ({setChalkboardColor, context}) => {
+const Pallete = ({setChalkboardColor, setStrokeStyle, setGlobalCompositeOperation, setLineWidth}) => {
 
   const toggleBrush = (e) => {
     document.getElementById("brush").style["color"] = e;
     document.getElementById("eraser").style["color"] = "pink";
-    context.globalCompositeOperation = "source-over";
+    setGlobalCompositeOperation("source-over");
   }
   
   const toggleEraser = (e) => {
     document.getElementById("eraser").style["color"] = "deeppink";
-    context.globalCompositeOperation = "destination-out";
+    setGlobalCompositeOperation("destination-out");
   }
   
   const toggleStrokeStyle = (e) => {
     toggleBrush(e);
-    context.strokeStyle = e;
+    setStrokeStyle(e);
   }
 
   const toggleLineWidth = (e) => {
-    context.lineWidth = e;
+    setLineWidth(e);
   }
 
   const resetCanvas = (e) => {
-    context.clearRect(0, 0, 1500, 750)
+    
   }
 
   return (
