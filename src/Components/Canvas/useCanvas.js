@@ -14,10 +14,10 @@ const useCanvas = (id) => {
       query: { id },
     });
     
-    socketRef.current.on(NEW_DRAW_EVENT, (stroke) => {
+    socketRef.current.on(NEW_DRAW_EVENT, (newStroke) => {
       const incomingStroke = {
-        ...stroke,
-        ownedByCurrentUser: stroke.senderId === socketRef.current.id,
+        ...newStroke,
+        ownedByCurrentUser: newStroke.senderId === socketRef.current.id,
       };
       setStroke((drawStrokes) => [...drawStrokes, incomingStroke]);
     });
@@ -27,9 +27,9 @@ const useCanvas = (id) => {
 
   }, [id]);
 
-  const sendStroke = (stroke) => {
+  const sendStroke = (newStroke) => {
     socketRef.current.emit(NEW_DRAW_EVENT, {
-      body: stroke,
+      body: newStroke,
       senderId: socketRef.current.id,
     });
   };

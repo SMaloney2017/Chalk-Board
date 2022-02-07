@@ -9,7 +9,6 @@ function Canvas({chalkboardColor, lineWidth, globalCompositeOperation, strokeSty
   const [isPainting, setIsPainting] = useState(false);
 
   useEffect(() => {
-
     const newStroke = {};
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
@@ -28,9 +27,10 @@ function Canvas({chalkboardColor, lineWidth, globalCompositeOperation, strokeSty
     newStroke.globalCompositeOperation = globalCompositeOperation;;
 
     const redrawCanvas = () => {
-      drawStrokes.map(stroke => (
-        stroke.ownedByCurrentUser ? null : drawStroke(stroke.body)
-      ))
+      drawStrokes.map(stroke => {
+        drawStroke(stroke.body);
+        return true;
+      })
     };
 
     const drawStroke = (newStroke, emit) => {

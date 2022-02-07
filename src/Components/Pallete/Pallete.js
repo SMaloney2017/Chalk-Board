@@ -27,7 +27,7 @@ const Pallete = ({setChalkboardColor, setStrokeStyle, setGlobalCompositeOperatio
   }
 
   const resetCanvas = (e) => {
-    
+    /* Implement Reset Canvas */
   }
 
   return (
