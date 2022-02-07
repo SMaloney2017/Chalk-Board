@@ -1,53 +1,77 @@
 import "../../CSS/Canvas.css";
 import { useEffect, useRef, useState } from "react";
+import useCanvas from "./useCanvas.js"
 
-function Canvas({chalkboardColor, setContext}) { 
+function Canvas({chalkboardColor, setContext, id}) { 
   const canvasRef = useRef(null);
   const ctxRef = useRef(null);
   const [isPainting, setIsPainting] = useState(false);
 
+  const { strokes, sendStroke } = useCanvas(id);
+
   useEffect(() => {
+    const newStroke = {};
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
-    setContext(ctx);
+    setContext(ctx);    
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
     ctx.globalAlpha = 1;
     ctxRef.current = ctx;
-  }, [setContext]);
+    newStroke.weight = ctx.lineWidth;
+    newStroke.color = ctx.strokeStyle;
 
-  const startPainting = (event) => {
-    ctxRef.current.beginPath();
-    ctxRef.current.moveTo(
-      event.nativeEvent.offsetX,
-      event.nativeEvent.offsetY
-    );
-    setIsPainting(true);
-  };
+    const startPainting = (event) => {
+      setIsPainting(true);
+      newStroke.x = event.offsetX || event.touches[0].offsetX;
+      newStroke.y = event.offsetY || event.touches[0].offsetY;
+    };
+    
+    const stopPainting = (event) => {
+      setIsPainting(false);
+    };
+    
+    const paintCanvas = (event) => {
+      if (!isPainting) {
+        return;
+      }
+      newStroke.x1 = event.offsetX || event.touches[0].offsetX;
+      newStroke.y1 = event.offsetY || event.touches[0].offsetY;
+      drawStroke(newStroke, true);
+      newStroke.x = event.offsetX || event.touches[0].offsetX;
+      newStroke.y = event.offsetY || event.touches[0].offsetY;
+    };
+    
+    const drawStroke = (newStroke, emit) => {
+      ctx.lineWidth = newStroke.weight;
+      ctx.strokeStyle = newStroke.color;
+      ctx.beginPath();
+      ctx.moveTo(
+        newStroke.x,
+        newStroke.y
+      );
+      ctx.lineTo(
+        newStroke.x1,
+        newStroke.y1
+      );
+      ctx.stroke();
+      ctx.closePath();
   
-  const stopPainting = () => {
-    ctxRef.current.closePath();
-    setIsPainting(false);
-  };
-  
-  const paintCanvas = (event) => {
-    if (!isPainting) {
-      return;
-    }
-    ctxRef.current.lineTo(
-      event.nativeEvent.offsetX,
-      event.nativeEvent.offsetY
-    );
-    ctxRef.current.stroke();
-  };
+      if(!emit) { return; }
+      sendStroke(newStroke);
+    };
+
+    canvas.onmousedown = startPainting;
+    canvas.onmouseup = stopPainting;
+    canvas.onmouseout = stopPainting;
+    canvas.onmousemove = paintCanvas;
+
+  }, [setContext, isPainting, strokes, sendStroke]);
 
   return(
     <>
       <div id="chalkboard" style={{backgroundColor: chalkboardColor}}>
         <canvas
-          onMouseDown={startPainting}
-          onMouseUp={stopPainting}
-          onMouseMove={paintCanvas}
           width={`1500px`}
           height={`750px`}
           ref={canvasRef}

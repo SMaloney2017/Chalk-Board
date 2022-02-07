@@ -52,7 +52,7 @@ const Pallete = ({setChalkboardColor, context}) => {
           <label className="custom"><input type="color" onChange={(e) => {toggleStrokeStyle(e.target.value)}}/></label>
         </div>
         <div id="brush-weight">
-          <input type="range" min={1} max={20} defaultValue={1} orient="vertical" onChange={(e) => {toggleLineWidth(e.target.value)}}/>
+          <input type="range" min={1} max={20} defaultValue={3} orient="vertical" onChange={(e) => {toggleLineWidth(e.target.value)}}/>
         </div>
         <div className="swatch">
           <BiChalkboard style={{fontSize: "25px", color:"white"}}/>

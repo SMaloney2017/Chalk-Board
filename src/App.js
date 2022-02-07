@@ -24,6 +24,7 @@ function App() {
         <Canvas
           chalkboardColor={chalkboardColor}
           setContext={setContext}
+          id={id}
         />
         <Pallete
           setChalkboardColor={setChalkboardColor}
