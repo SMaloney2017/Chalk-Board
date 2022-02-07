@@ -18,7 +18,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on(NEW_DRAW_EVENT, (data) => {
-    socket.broadcast.emit(NEW_DRAW_EVENT, data);
+    io.in(id).emit(NEW_DRAW_EVENT, data);
   });
 
   socket.on("disconnect", () => {

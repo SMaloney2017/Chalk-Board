@@ -74,22 +74,10 @@ function Canvas({chalkboardColor, lineWidth, globalCompositeOperation, strokeSty
       newStroke.y = event.offsetY;
     };
 
-    const limit = (callback, delay) => {
-      let previousCall = new Date().getTime();
-      return function() {
-        const time = new Date().getTime();
-
-        if ((time - previousCall) >= delay) {
-          previousCall = time;
-          callback.apply(null, arguments);
-        }
-      };
-    };
-
     canvas.onmousedown = startPainting;
     canvas.onmouseup = stopPainting;
     canvas.onmouseout = stopPainting;
-    canvas.onmousemove = limit(paintCanvas, 10);
+    canvas.onmousemove = paintCanvas;
 
     redrawCanvas()
 
