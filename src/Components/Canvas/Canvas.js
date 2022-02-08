@@ -28,6 +28,7 @@ function Canvas({chalkboardColor, lineWidth, globalCompositeOperation, strokeSty
     newStroke.globalCompositeOperation = globalCompositeOperation;
 
     const redrawCanvas = () => {
+      console.log(drawStrokes)
       drawStrokes.map(lineArray => {
         if(lineArray.hasOwnProperty("body")) {
           lineArray.body.forEach((stroke) => drawStroke(stroke));
