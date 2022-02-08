@@ -28,7 +28,6 @@ function Canvas({chalkboardColor, lineWidth, globalCompositeOperation, strokeSty
     newStroke.globalCompositeOperation = globalCompositeOperation;
 
     const redrawCanvas = () => {
-      console.log(drawStrokes)
       drawStrokes.map(lineArray => {
         if(lineArray.hasOwnProperty("body")) {
           lineArray.body.forEach((stroke) => drawStroke(stroke));
@@ -55,7 +54,6 @@ function Canvas({chalkboardColor, lineWidth, globalCompositeOperation, strokeSty
       
       if(!emit) { return; }
       lineArray.push(JSON.parse(JSON.stringify(newStroke)));
-      console.log(lineArray)
     };
 
     const startPainting = (event) => {

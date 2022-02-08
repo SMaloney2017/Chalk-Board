@@ -32,7 +32,7 @@ const Channel = ({id}) => {
         <div id="messages-wrapper">
           <ol className="messages-list" style={{listStyle: "none", color: "teal"}}>
             <li><span style={{color:"crimson"}}>[ADMIN]</span> Create or join an instance by adding an ID to the path of the URL!</li>
-            <li><span style={{color:"crimson"}}>[ADMIN]</span> (eg. {window.location.href}ID)</li>
+            <li><span style={{color:"crimson"}}>[ADMIN]</span> {window.location.href}</li>
             {messages.map((message, i) => (
               <li
                 key={i}
