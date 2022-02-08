@@ -13,10 +13,10 @@ const useChannel = (id) => {
       query: { id },
     });
 
-    socketRef.current.on(NEW_CHAT_MESSAGE_EVENT, (message) => {
+    socketRef.current.on(NEW_CHAT_MESSAGE_EVENT, (newMessage) => {
       const incomingMessage = {
-        ...message,
-        ownedByCurrentUser: message.senderId === socketRef.current.id,
+        ...newMessage,
+        ownedByCurrentUser: newMessage.senderId === socketRef.current.id,
       };
       setMessages((messages) => [...messages, incomingMessage]);
     });
@@ -26,10 +26,10 @@ const useChannel = (id) => {
     };
   }, [id]);
 
-  const sendMessage = (messageBody) => {
+  const sendMessage = (newMessage) => {
     var date = new Date();
     socketRef.current.emit(NEW_CHAT_MESSAGE_EVENT, {
-      body: messageBody,
+      body: newMessage,
       timestamp: `[${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}]`,
       senderId: socketRef.current.id,
     });
