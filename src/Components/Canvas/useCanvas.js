@@ -5,7 +5,7 @@ const NEW_DRAW_EVENT = "newCanvasStroke";
 const SOCKET_SERVER_URL = "http://localhost:4000";
 
 const useCanvas = (id) => {
-  const [drawStrokes, setStroke] = useState([]);
+  const [drawStrokes, setStroke] = useState([[]]);
   const socketRef = useRef();
   
   useEffect(() => {

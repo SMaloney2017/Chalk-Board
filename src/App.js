@@ -6,7 +6,7 @@ import Channel from "./Components/Channel/Channel.js"
 
 function App() {
   const [chalkboardColor, setChalkboardColor] = useState("#354d42");
-  const [strokeStyle, setStrokeStyle] = useState("#000000");
+  const [strokeStyle, setStrokeStyle] = useState("black");
   const [globalCompositeOperation, setGlobalCompositeOperation] = useState("source-over");
   const [lineWidth, setLineWidth] = useState(3);
   const [id, setId] = useState("");

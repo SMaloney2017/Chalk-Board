@@ -9,6 +9,7 @@ function Canvas({chalkboardColor, lineWidth, globalCompositeOperation, strokeSty
   const [isPainting, setIsPainting] = useState(false);
 
   useEffect(() => {
+    const lineArray = [];
     const newStroke = {};
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
@@ -24,11 +25,13 @@ function Canvas({chalkboardColor, lineWidth, globalCompositeOperation, strokeSty
 
     newStroke.weight = lineWidth;
     newStroke.color = strokeStyle;
-    newStroke.globalCompositeOperation = globalCompositeOperation;;
+    newStroke.globalCompositeOperation = globalCompositeOperation;
 
     const redrawCanvas = () => {
-      drawStrokes.map(stroke => {
-        drawStroke(stroke.body);
+      drawStrokes.map(lineArray => {
+        if(lineArray.hasOwnProperty("body")) {
+          lineArray.body.forEach((stroke) => drawStroke(stroke));
+        }
         return true;
       })
     };
@@ -50,7 +53,8 @@ function Canvas({chalkboardColor, lineWidth, globalCompositeOperation, strokeSty
       ctxRef.current.closePath();
       
       if(!emit) { return; }
-      sendStroke(newStroke);
+      lineArray.push(JSON.parse(JSON.stringify(newStroke)));
+      console.log(lineArray)
     };
 
     const startPainting = (event) => {
@@ -61,6 +65,7 @@ function Canvas({chalkboardColor, lineWidth, globalCompositeOperation, strokeSty
     
     const stopPainting = (event) => {
       setIsPainting(false);
+      sendStroke(lineArray);
     };
     
     const paintCanvas = (event) => {
@@ -76,7 +81,6 @@ function Canvas({chalkboardColor, lineWidth, globalCompositeOperation, strokeSty
 
     canvas.onmousedown = startPainting;
     canvas.onmouseup = stopPainting;
-    canvas.onmouseout = stopPainting;
     canvas.onmousemove = paintCanvas;
 
     redrawCanvas()
