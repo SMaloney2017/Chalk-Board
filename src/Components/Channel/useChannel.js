@@ -1,19 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import socketIOClient from "socket.io-client";
 
-const NEW_CHAT_MESSAGE_EVENT = "newChannelMessage";
+const NEW_CHAT_MESSAGE_EVENT = "newMessageEvent";
 const SOCKET_SERVER_URL = "http://localhost:4000";
 
 const useChannel = (id) => {
   const [messages, setMessages] = useState([]);
   const socketRef = useRef();
-  
+
   useEffect(() => {
-    
     socketRef.current = socketIOClient(SOCKET_SERVER_URL, {
       query: { id },
     });
-    
+
     socketRef.current.on(NEW_CHAT_MESSAGE_EVENT, (message) => {
       const incomingMessage = {
         ...message,
@@ -21,11 +20,10 @@ const useChannel = (id) => {
       };
       setMessages((messages) => [...messages, incomingMessage]);
     });
-    
+
     return () => {
       socketRef.current.disconnect();
     };
-
   }, [id]);
 
   const sendMessage = (messageBody) => {

@@ -1,8 +1,14 @@
 import "../../CSS/Canvas.css";
 import { useEffect, useRef, useState } from "react";
-import useCanvas from "./useCanvas.js"
+import useCanvas from "./useCanvas.js";
 
-function Canvas({chalkboardColor, lineWidth, globalCompositeOperation, strokeStyle, id}) { 
+function Canvas({
+  chalkboardColor,
+  lineWidth,
+  globalCompositeOperation,
+  strokeStyle,
+  id,
+}) {
   const canvasRef = useRef(null);
   const ctxRef = useRef(null);
   const { drawStrokes, sendStroke } = useCanvas(id);
@@ -28,31 +34,29 @@ function Canvas({chalkboardColor, lineWidth, globalCompositeOperation, strokeSty
     newStroke.globalCompositeOperation = globalCompositeOperation;
 
     const redrawCanvas = () => {
-      drawStrokes.map(lineArray => {
-        if(lineArray.hasOwnProperty("body")) {
+      ctxRef.current.clearRect(0, 0, canvas.width, canvas.height);
+      drawStrokes.map((lineArray) => {
+        if (lineArray.hasOwnProperty("body")) {
           lineArray.body.forEach((stroke) => drawStroke(stroke));
         }
         return true;
-      })
+      });
     };
 
     const drawStroke = (newStroke, emit) => {
-      ctxRef.current.globalCompositeOperation = newStroke.globalCompositeOperation;
+      ctxRef.current.globalCompositeOperation =
+        newStroke.globalCompositeOperation;
       ctxRef.current.lineWidth = newStroke.weight;
       ctxRef.current.strokeStyle = newStroke.color;
       ctxRef.current.beginPath();
-      ctxRef.current.moveTo(
-        newStroke.x,
-        newStroke.y
-      );
-      ctxRef.current.lineTo(
-        newStroke.x1,
-        newStroke.y1
-      );
+      ctxRef.current.moveTo(newStroke.x, newStroke.y);
+      ctxRef.current.lineTo(newStroke.x1, newStroke.y1);
       ctxRef.current.stroke();
       ctxRef.current.closePath();
-      
-      if(!emit) { return; }
+
+      if (!emit) {
+        return;
+      }
       lineArray.push(JSON.parse(JSON.stringify(newStroke)));
     };
 
@@ -61,12 +65,12 @@ function Canvas({chalkboardColor, lineWidth, globalCompositeOperation, strokeSty
       newStroke.x = event.offsetX;
       newStroke.y = event.offsetY;
     };
-    
+
     const stopPainting = (event) => {
       setIsPainting(false);
       sendStroke(lineArray);
     };
-    
+
     const paintCanvas = (event) => {
       if (!isPainting) {
         return;
@@ -82,21 +86,23 @@ function Canvas({chalkboardColor, lineWidth, globalCompositeOperation, strokeSty
     canvas.onmouseup = stopPainting;
     canvas.onmousemove = paintCanvas;
 
-    redrawCanvas()
+    redrawCanvas();
+  }, [
+    strokeStyle,
+    lineWidth,
+    globalCompositeOperation,
+    isPainting,
+    drawStrokes,
+    sendStroke,
+  ]);
 
-  }, [strokeStyle, lineWidth, globalCompositeOperation, isPainting, drawStrokes, sendStroke]);
-
-  return(
+  return (
     <>
-      <div id="chalkboard" style={{backgroundColor: chalkboardColor}}>
-        <canvas
-          width={`1500px`}
-          height={`750px`}
-          ref={canvasRef}
-        />
+      <div id="chalkboard" style={{ backgroundColor: chalkboardColor }}>
+        <canvas width={`1500px`} height={`750px`} ref={canvasRef} />
       </div>
     </>
-  )
+  );
 }
 
-export default Canvas
+export default Canvas;

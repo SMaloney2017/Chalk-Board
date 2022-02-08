@@ -6,8 +6,9 @@ const io = require("socket.io")(server, {
 });
 
 const PORT = process.env.PORT || 4000;
-const NEW_CHAT_MESSAGE_EVENT = "newChannelMessage";
-const NEW_DRAW_EVENT = "newCanvasStroke";
+const NEW_CHAT_MESSAGE_EVENT = "newMessageEvent";
+const NEW_DRAW_EVENT = "newLineEvent";
+const NEW_RESET_EVENT = "resetCanvasEvent";
 
 io.on("connection", (socket) => {
   const { id } = socket.handshake.query;
@@ -19,6 +20,10 @@ io.on("connection", (socket) => {
 
   socket.on(NEW_DRAW_EVENT, (data) => {
     io.in(id).emit(NEW_DRAW_EVENT, data);
+  });
+
+  socket.on(NEW_RESET_EVENT, () => {
+    io.in(id).emit(NEW_RESET_EVENT);
   });
 
   socket.on("disconnect", () => {
