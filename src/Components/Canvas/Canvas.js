@@ -11,7 +11,7 @@ function Canvas({
 }) {
   const canvasRef = useRef(null);
   const ctxRef = useRef(null);
-  const { drawStrokes, sendStroke } = useCanvas(id);
+  const { drawLines, sendStrokes } = useCanvas(id);
   const [isPainting, setIsPainting] = useState(false);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ function Canvas({
 
     const redrawCanvas = () => {
       ctxRef.current.clearRect(0, 0, canvas.width, canvas.height);
-      drawStrokes.map((lineArray) => {
+      drawLines.map((lineArray) => {
         if (lineArray.hasOwnProperty("body")) {
           lineArray.body.forEach((stroke) => drawStroke(stroke));
         }
@@ -68,7 +68,7 @@ function Canvas({
 
     const stopPainting = (event) => {
       setIsPainting(false);
-      sendStroke(lineArray);
+      sendStrokes(lineArray);
     };
 
     const paintCanvas = (event) => {
@@ -92,8 +92,8 @@ function Canvas({
     lineWidth,
     globalCompositeOperation,
     isPainting,
-    drawStrokes,
-    sendStroke,
+    drawLines,
+    sendStrokes,
   ]);
 
   return (

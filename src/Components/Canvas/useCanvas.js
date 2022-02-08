@@ -1,12 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import socketIOClient from "socket.io-client";
 
-const NEW_DRAW_EVENT = "newLineEvent";
-const NEW_RESET_EVENT = "resetCanvasEvent";
+const NEW_LINE_EVENT = "newLineEvent";
+const NEW_RESET_EVENT = "resetLinesEvent";
+const NEW_UNDO_EVENT = "undoLineEvent";
+const NEW_REDO_EVENT = "redoLineEvent";
 const SOCKET_SERVER_URL = "http://localhost:4000";
 
 const useCanvas = (id) => {
-  const [drawStrokes, setStroke] = useState([[]]);
+  const [drawLines, setLines] = useState([]);
+  const [redoLines, setRedoLines] = useState([]);
+
   const socketRef = useRef();
 
   useEffect(() => {
@@ -14,26 +18,44 @@ const useCanvas = (id) => {
       query: { id },
     });
 
-    socketRef.current.on(NEW_DRAW_EVENT, (newStroke) => {
+    socketRef.current.on(NEW_LINE_EVENT, (newStroke) => {
       const incomingStroke = {
         ...newStroke,
         ownedByCurrentUser: newStroke.senderId === socketRef.current.id,
       };
-      setStroke((drawStrokes) => [...drawStrokes, incomingStroke]);
+      setLines((drawLines) => [...drawLines, incomingStroke]);
     });
 
     socketRef.current.on(NEW_RESET_EVENT, () => {
-      setStroke([[]]);
+      setLines([]);
+    });
+
+    socketRef.current.on(NEW_UNDO_EVENT, () => {
+      if (drawLines.length > 0) {
+        const tempArray = [...redoLines];
+        tempArray.push(drawLines.pop());
+        setRedoLines(tempArray);
+        setLines(drawLines);
+      }
+    });
+
+    socketRef.current.on(NEW_REDO_EVENT, () => {
+      if (redoLines.length > 0) {
+        const tempArray = [...drawLines];
+        tempArray.push(redoLines.pop());
+        setRedoLines(redoLines);
+        setLines(tempArray);
+      } 
     });
 
     return () => {
       socketRef.current.disconnect();
     };
-  }, [id]);
+  }, [id, drawLines, redoLines]);
 
-  const sendStroke = (newStroke) => {
-    socketRef.current.emit(NEW_DRAW_EVENT, {
-      body: newStroke,
+  const sendStrokes = (newStrokes) => {
+    socketRef.current.emit(NEW_LINE_EVENT, {
+      body: newStrokes,
       senderId: socketRef.current.id,
     });
   };
@@ -42,7 +64,21 @@ const useCanvas = (id) => {
     socketRef.current.emit(NEW_RESET_EVENT);
   };
 
-  return { drawStrokes, sendStroke, resetStrokes };
+  const undoStrokes = () => {
+    socketRef.current.emit(NEW_UNDO_EVENT);
+  };
+
+  const redoStrokes = () => {
+    socketRef.current.emit(NEW_REDO_EVENT);
+  };
+
+  return { 
+    drawLines,
+    sendStrokes,
+    resetStrokes,
+    undoStrokes,
+    redoStrokes
+  };
 };
 
 export default useCanvas;

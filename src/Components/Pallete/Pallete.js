@@ -12,7 +12,7 @@ const Pallete = ({
   setLineWidth,
   id,
 }) => {
-  const { resetStrokes } = useCanvas(id);
+  const { resetStrokes, undoStrokes, redoStrokes } = useCanvas(id);
 
   const toggleBrush = (e) => {
     document.getElementById("brush").style["color"] = e;
@@ -38,15 +38,29 @@ const Pallete = ({
     resetStrokes();
   };
 
+  const undoLine = (e) => {
+    undoStrokes();
+  };
+
+  const redoLine = (e) => {
+    redoStrokes();
+  };
+
   return (
     <>
       <div id="pallete">
         <div className="swatch">
           <MdUndo
             style={{ fontSize: "25px", color: "white", cursor: "pointer" }}
+            onClick={(e) => {
+              undoLine();
+            }}
           />
           <MdRedo
             style={{ fontSize: "25px", color: "white", cursor: "pointer" }}
+            onClick={(e) => {
+              redoLine();
+            }}
           />
           <BiEraser
             id="eraser"
