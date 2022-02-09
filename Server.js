@@ -1,4 +1,5 @@
-const server = require("http").createServer();
+const app = require("express")();
+const server = require("http").createServer(app);
 const io = require("socket.io")(server, {
   cors: {
     origin: "*",
@@ -11,6 +12,13 @@ const NEW_LINE_EVENT = "newLineEvent";
 const NEW_RESET_EVENT = "resetLinesEvent";
 const NEW_UNDO_EVENT = "undoLineEvent";
 const NEW_REDO_EVENT = "redoLineEvent";
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("build"));
+  app.get('*', (req, res) => {
+    req.sendFile(path.resolve(__dirname, "build", "index.html"));
+  })
+};
 
 io.on("connection", (socket) => {
   const { id } = socket.handshake.query;
