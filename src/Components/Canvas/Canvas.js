@@ -83,6 +83,7 @@ function Canvas({
 
     canvas.onmousedown = startPainting;
     canvas.onmouseup = stopPainting;
+    canvas.onmouseout = stopPainting;
     canvas.onmousemove = paintCanvas;
 
     redrawCanvas();

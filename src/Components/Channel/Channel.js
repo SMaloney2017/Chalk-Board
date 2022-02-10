@@ -27,8 +27,6 @@ const Channel = ({ setId, messages, sendMessage }) => {
 
   const handleRoomJoin = (e) => {
     document.getElementById("roomid").style.color = "#00ff6a";
-    document.getElementById("roomid").style.pointerEvents = "none";
-    document.getElementById("join").style.pointerEvents = "none";
     setId(roomId);
   };
 
