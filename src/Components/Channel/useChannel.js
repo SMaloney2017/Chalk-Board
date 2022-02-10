@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import socketIOClient from "socket.io-client";
 
 const NEW_CHAT_MESSAGE_EVENT = "newMessageEvent";
-const SOCKET_SERVER_URL = "/";
+const SOCKET_SERVER_URL = process.env.PORT;
 
 const useChannel = (id) => {
   const [messages, setMessages] = useState([]);

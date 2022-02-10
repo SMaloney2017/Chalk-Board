@@ -5,7 +5,7 @@ const NEW_LINE_EVENT = "newLineEvent";
 const NEW_RESET_EVENT = "resetLinesEvent";
 const NEW_UNDO_EVENT = "undoLineEvent";
 const NEW_REDO_EVENT = "redoLineEvent";
-const SOCKET_SERVER_URL = "/";
+const SOCKET_SERVER_URL = process.env.PORT;
 
 const useCanvas = (id) => {
   const [drawLines, setLines] = useState([]);
