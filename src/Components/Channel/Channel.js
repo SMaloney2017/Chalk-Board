@@ -40,7 +40,7 @@ const Channel = ({ setId }) => {
               toggleChannelView(e);
             }}
           />
-          <div id="input">
+          <div className="input">
             <input
               type="text"
               placeholder="Enter message"
@@ -48,7 +48,7 @@ const Channel = ({ setId }) => {
               onChange={handleNewMessageChange}
             />
           </div>
-          <div id="submit" onClick={handleSendMessage}>
+          <div className="submit" onClick={handleSendMessage}>
             Submit
           </div>
         </div>
@@ -64,13 +64,13 @@ const Channel = ({ setId }) => {
             <li>
               <span style={{ color: "crimson" }}>[ADMIN]</span>
               <input
-                id="roomid"
+                className="input roomid"
                 type="text"
                 placeholder="Enter RoomId"
                 value={RoomID}
                 onChange={handleRoomIdChange}
               />
-              <div id="join" onClick={handleRoomJoin}>
+              <div className="submit join" onClick={handleRoomJoin}>
                 +
               </div>
             </li>

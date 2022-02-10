@@ -54,7 +54,7 @@
     grid-gap: 0px;
 }
  
-#submit {
+.submit {
     display: block;
     width: 100px;
     height: 30px;
@@ -75,14 +75,14 @@
     pointer-events: auto;
 }
 
-#submit:hover {
+.submit:hover {
     transform: translateY(1px);
     box-shadow: 0 1px 1px #00000026;
     color: #00ff6a;
     transition: 0.15s ease;
 }
 
-#input {
+.input {
     display: block;
     z-index: 1;
     height: 30px;
@@ -93,24 +93,13 @@
         0 4px 4px rgba(0,0,0,0.15);
 }
 
-#roomid {
-    display: block;
-    z-index: 1;
-    height: 30px;
-    background: linear-gradient(to top right, #1a1a1a 0%, #202020 100%); 
+.roomid {
+    width: 75px;
 }
  
-#join {
-    display: block;
+.join {
     width: 30px;
     height: 30px;
-    background-image: linear-gradient(to top right, #1a1a1ab4 0%, #cc00ffa2 100%); 
-    text-align: center;
-    font-size: 15px;
-    color: #ffffff;
-    text-shadow: 0px 1px 0px #ffffff4d, 0px -1px 0px #000000b3;
-    line-height: 210%;
-    pointer-events: auto;
 }
 
 input[type=text] {
