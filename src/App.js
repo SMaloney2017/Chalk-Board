@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <div id="lobby">
-        <Channel setId={setId} id={id} />
+        <Channel setId={setId} />
         <Canvas
           chalkboardColor={chalkboardColor}
           strokeStyle={strokeStyle}
