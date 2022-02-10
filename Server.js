@@ -16,7 +16,7 @@ const NEW_REDO_EVENT = "redoLineEvent";
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("build"));
-  app.get('*', (req, res) => {
+  app.get('/', (req, res) => {
     req.sendFile(path.resolve(__dirname, "build", "index.html"));
   });
 };
