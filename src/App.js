@@ -12,6 +12,7 @@ function App() {
   const [id, setId] = useState("");
 
   const getExtension = (url) => {
+    console.log(url.pathname.slice(1));
     setId(url.pathname.slice(1));
   };
 
