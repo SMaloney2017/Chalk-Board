@@ -1,5 +1,5 @@
 import "./CSS/App.css";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Canvas from "./Components/Canvas/Canvas.js";
 import Pallete from "./Components/Pallete/Pallete.js";
 import Channel from "./Components/Channel/Channel.js";
@@ -11,19 +11,10 @@ function App() {
   const [lineWidth, setLineWidth] = useState(3);
   const [id, setId] = useState("");
 
-  const getExtension = (url) => {
-    console.log(url.pathname.slice(1));
-    setId(url.pathname.slice(1));
-  };
-
-  useEffect(() => {
-    getExtension(window.location);
-  }, []);
-
   return (
     <>
       <div id="lobby">
-        <Channel id={id} />
+        <Channel setId={setId} id={id} />
         <Canvas
           chalkboardColor={chalkboardColor}
           strokeStyle={strokeStyle}
