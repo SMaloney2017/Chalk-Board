@@ -15,7 +15,7 @@ const NEW_UNDO_EVENT = "undoLineEvent";
 const NEW_REDO_EVENT = "redoLineEvent";
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "./build")));
+  app.use(express.static(path.join(__dirname, "build")));
 };
 
 io.on("connection", (socket) => {
@@ -45,6 +45,10 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     socket.leave(id);
   });
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./build"));
 });
 
 server.listen(PORT, () => {
