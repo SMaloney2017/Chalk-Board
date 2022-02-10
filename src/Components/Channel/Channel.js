@@ -1,13 +1,12 @@
 import "../../CSS/Channel.css";
-import { BiMessageAltDetail } from "react-icons/bi";
+import { BiMessageAltDetail, BiLogIn } from "react-icons/bi";
 import React, { useState } from "react";
-import useChannel from "./useChannel.js";
+import useSockets from "../Hooks/useSockets.js";
 
-const Channel = ({ setId }) => {
+const Channel = ({ setId,  messages, sendMessage }) => {
   const [view, setView] = useState(true);
-  const [RoomID, setRoomId] = useState("");
-  const { messages, sendMessage } = useChannel(RoomID);
   const [newMessage, setNewMessage] = useState("");
+  const [roomId, setRoomId] = useState("");
 
   const toggleChannelView = (e) => {
     setView(!view);
@@ -16,18 +15,23 @@ const Channel = ({ setId }) => {
   const handleNewMessageChange = (e) => {
     setNewMessage(e.target.value);
   };
-  
-  const handleRoomIdChange = (e) => {
-    setRoomId(e.target.value);
-  };
-
-  const handleRoomJoin = (e) => {
-    setId(RoomID);
-  };
 
   const handleSendMessage = (e) => {
     sendMessage(newMessage);
     setNewMessage("");
+  };
+  
+  const handleRoomIdChange = (e) => {
+    document.getElementById("roomid").style.color = "crimson";
+    setRoomId(e.target.value);
+  };
+
+  const handleRoomJoin = (e) => {
+    e.preventDefault();
+    document.getElementById("roomid").style.color = "#00ff6a";
+    document.getElementById("roomid").style.pointerEvents = "none";
+    document.getElementById("join").style.pointerEvents = "none";
+    setId(roomId);
   };
 
   return (
@@ -40,7 +44,7 @@ const Channel = ({ setId }) => {
               toggleChannelView(e);
             }}
           />
-          <div className="input">
+          <div id="input">
             <input
               type="text"
               placeholder="Enter message"
@@ -48,7 +52,7 @@ const Channel = ({ setId }) => {
               onChange={handleNewMessageChange}
             />
           </div>
-          <div className="submit" onClick={handleSendMessage}>
+          <div id="submit" onClick={handleSendMessage}>
             Submit
           </div>
         </div>
@@ -59,19 +63,23 @@ const Channel = ({ setId }) => {
           >
             <li>
               <span style={{ color: "crimson" }}>[ADMIN]</span> Create or join
-              an instance by entering an ID!
+              an instance by entering a RoomID!
             </li>
             <li>
-              <span style={{ color: "crimson" }}>[ADMIN]</span>
-              <input
-                className="input roomid"
-                type="text"
-                placeholder="Enter RoomId"
-                value={RoomID}
-                onChange={handleRoomIdChange}
-              />
-              <div className="submit join" onClick={handleRoomJoin}>
-                +
+              <span style={{ color: "crimson", float: "left" }}>[ADMIN]</span>
+              <div id="join-wrapper">
+                <input
+                  id="roomid"
+                  type="text"
+                  placeholder="RoomID"
+                  pattern={"a-zA-Z0-9"}
+                  maxLength="4"
+                  value={roomId}
+                  onChange={handleRoomIdChange}
+                />
+                <div id="join" onClick={handleRoomJoin}>
+                  <BiLogIn />
+                </div>
               </div>
             </li>
             {messages.map((message, i) => (

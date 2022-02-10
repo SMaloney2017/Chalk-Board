@@ -3,16 +3,15 @@ import React from "react";
 import { BiBrush, BiChalkboard, BiEraser } from "react-icons/bi";
 import { FaTrashAlt } from "react-icons/fa";
 import { MdUndo, MdRedo } from "react-icons/md";
-import useCanvas from "../Canvas/useCanvas.js";
+import useSockets from "../Hooks/useSockets.js";
 
 const Pallete = ({
   setChalkboardColor,
   setStrokeStyle,
   setGlobalCompositeOperation,
   setLineWidth,
-  id,
+  resetStrokes, undoStrokes, redoStrokes 
 }) => {
-  const { resetStrokes, undoStrokes, redoStrokes } = useCanvas(id);
 
   const toggleBrush = (e) => {
     document.getElementById("brush").style["color"] = e;

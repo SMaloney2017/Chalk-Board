@@ -1,6 +1,6 @@
 import "../../CSS/Canvas.css";
 import { useEffect, useRef, useState } from "react";
-import useCanvas from "./useCanvas.js";
+import useSockets from "../Hooks/useSockets.js";
 
 function Canvas({
   chalkboardColor,
@@ -8,10 +8,11 @@ function Canvas({
   globalCompositeOperation,
   strokeStyle,
   id,
+  drawLines,
+  sendStrokes,
 }) {
   const canvasRef = useRef(null);
   const ctxRef = useRef(null);
-  const { drawLines, sendStrokes } = useCanvas(id);
   const [isPainting, setIsPainting] = useState(false);
 
   useEffect(() => {
@@ -91,6 +92,7 @@ function Canvas({
     strokeStyle,
     lineWidth,
     globalCompositeOperation,
+    id,
     isPainting,
     drawLines,
     sendStrokes,

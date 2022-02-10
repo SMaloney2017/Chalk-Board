@@ -1,21 +1,31 @@
 import { useEffect, useRef, useState } from "react";
 import socketIOClient from "socket.io-client";
 
+const NEW_CHAT_MESSAGE_EVENT = "newMessageEvent";
 const NEW_LINE_EVENT = "newLineEvent";
 const NEW_RESET_EVENT = "resetLinesEvent";
 const NEW_UNDO_EVENT = "undoLineEvent";
 const NEW_REDO_EVENT = "redoLineEvent";
-const SOCKET_SERVER_URL = "/";
+const SOCKET_SERVER_URL = "/"; //http://localhost:4000
 
-const useCanvas = (id) => {
+const useSockets = (id) => {
   const [drawLines, setLines] = useState([]);
   const [redoLines, setRedoLines] = useState([]);
+  const [messages, setMessages] = useState([]);
 
   const socketRef = useRef();
 
   useEffect(() => {
     socketRef.current = socketIOClient(SOCKET_SERVER_URL, {
       query: { id },
+    });
+
+    socketRef.current.on(NEW_CHAT_MESSAGE_EVENT, (newMessage) => {
+      const incomingMessage = {
+        ...newMessage,
+        ownedByCurrentUser: newMessage.senderId === socketRef.current.id,
+      };
+      setMessages((messages) => [...messages, incomingMessage]);
     });
 
     socketRef.current.on(NEW_LINE_EVENT, (newStroke) => {
@@ -53,6 +63,15 @@ const useCanvas = (id) => {
     };
   }, [id, drawLines, redoLines]);
 
+  const sendMessage = (newMessage) => {
+    var date = new Date();
+    socketRef.current.emit(NEW_CHAT_MESSAGE_EVENT, {
+      body: newMessage,
+      timestamp: `[${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}]`,
+      senderId: socketRef.current.id,
+    });
+  };
+
   const sendStrokes = (newStrokes) => {
     socketRef.current.emit(NEW_LINE_EVENT, {
       body: newStrokes,
@@ -74,11 +93,13 @@ const useCanvas = (id) => {
 
   return { 
     drawLines,
+    messages,
     sendStrokes,
     resetStrokes,
     undoStrokes,
-    redoStrokes
+    redoStrokes,
+    sendMessage,
   };
 };
 
-export default useCanvas;
+export default useSockets;
