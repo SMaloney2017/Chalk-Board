@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Canvas from "./Components/Canvas/Canvas.js";
 import Pallete from "./Components/Pallete/Pallete.js";
 import Channel from "./Components/Channel/Channel.js";
-import useSockets from "./Components/Hooks/useSockets.js";
+import useSockets from "./Components/Hooks/useSockets.js"
 
 function App() {
   const [chalkboardColor, setChalkboardColor] = useState("#354d42");
@@ -11,7 +11,7 @@ function App() {
   const [globalCompositeOperation, setGlobalCompositeOperation] = useState("source-over");
   const [lineWidth, setLineWidth] = useState(3);
   const [id, setId] = useState("");
-  const {
+  const { 
     drawLines,
     messages,
     sendStrokes,
@@ -24,10 +24,10 @@ function App() {
   return (
     <>
       <div id="lobby">
-        <Channel 
+        <Channel
           setId={setId}
-          messages={messages}
           sendMessage={sendMessage}
+          messages={messages}
         />
         <Canvas
           chalkboardColor={chalkboardColor}
@@ -36,7 +36,6 @@ function App() {
           lineWidth={lineWidth}
           drawLines={drawLines}
           sendStrokes={sendStrokes}
-          id={id}
         />
         <Pallete
           setChalkboardColor={setChalkboardColor}
@@ -46,7 +45,6 @@ function App() {
           resetStrokes={resetStrokes}
           undoStrokes={undoStrokes}
           redoStrokes={redoStrokes}
-          id={id}
         />
       </div>
     </>

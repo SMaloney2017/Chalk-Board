@@ -1,9 +1,8 @@
 import "../../CSS/Channel.css";
 import { BiMessageAltDetail, BiLogIn } from "react-icons/bi";
 import React, { useState } from "react";
-import useSockets from "../Hooks/useSockets.js";
 
-const Channel = ({ setId,  messages, sendMessage }) => {
+const Channel = ({ setId, messages, sendMessage }) => {
   const [view, setView] = useState(true);
   const [newMessage, setNewMessage] = useState("");
   const [roomId, setRoomId] = useState("");
@@ -27,7 +26,6 @@ const Channel = ({ setId,  messages, sendMessage }) => {
   };
 
   const handleRoomJoin = (e) => {
-    e.preventDefault();
     document.getElementById("roomid").style.color = "#00ff6a";
     document.getElementById("roomid").style.pointerEvents = "none";
     document.getElementById("join").style.pointerEvents = "none";

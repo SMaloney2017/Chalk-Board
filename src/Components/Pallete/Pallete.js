@@ -3,14 +3,15 @@ import React from "react";
 import { BiBrush, BiChalkboard, BiEraser } from "react-icons/bi";
 import { FaTrashAlt } from "react-icons/fa";
 import { MdUndo, MdRedo } from "react-icons/md";
-import useSockets from "../Hooks/useSockets.js";
 
 const Pallete = ({
   setChalkboardColor,
   setStrokeStyle,
   setGlobalCompositeOperation,
   setLineWidth,
-  resetStrokes, undoStrokes, redoStrokes 
+  resetStrokes,
+  undoStrokes,
+  redoStrokes
 }) => {
 
   const toggleBrush = (e) => {

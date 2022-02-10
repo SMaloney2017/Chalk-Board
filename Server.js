@@ -20,13 +20,12 @@ if (process.env.NODE_ENV === "production") {
   app.get('/', (req, res) => {
     req.sendFile(path.resolve(__dirname, "build", "index.html"));
   });
-
 };
 
 io.on("connection", (socket) => {
   const { id } = socket.handshake.query;
   socket.join(id);
-
+  
   socket.on(NEW_CHAT_MESSAGE_EVENT, (data) => {
     io.in(id).emit(NEW_CHAT_MESSAGE_EVENT, data);
   });

@@ -1,15 +1,13 @@
 import "../../CSS/Canvas.css";
 import { useEffect, useRef, useState } from "react";
-import useSockets from "../Hooks/useSockets.js";
 
 function Canvas({
   chalkboardColor,
   lineWidth,
   globalCompositeOperation,
   strokeStyle,
-  id,
   drawLines,
-  sendStrokes,
+  sendStrokes 
 }) {
   const canvasRef = useRef(null);
   const ctxRef = useRef(null);
@@ -92,10 +90,9 @@ function Canvas({
     strokeStyle,
     lineWidth,
     globalCompositeOperation,
-    id,
-    isPainting,
     drawLines,
     sendStrokes,
+    isPainting,
   ]);
 
   return (
