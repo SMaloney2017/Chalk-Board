@@ -93,6 +93,14 @@
         0 4px 4px rgba(0,0,0,0.15);
 }
 
+#roomid {
+    display: block;
+    z-index: 1;
+    height: 15px;
+    width: 15px;
+    background: linear-gradient(to top right, #1a1a1a 0%, #202020 100%); 
+}
+
 input[type=text] {
     width: 100%;
     height: 30px;

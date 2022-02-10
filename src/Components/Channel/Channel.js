@@ -5,7 +5,7 @@ import useChannel from "./useChannel.js";
 
 const Channel = ({ setId }) => {
   const [view, setView] = useState(true);
-  const [RoomID, setRoomId] = useState("DFLT");
+  const [RoomID, setRoomId] = useState("");
   const { messages, sendMessage } = useChannel(RoomID);
   const [newMessage, setNewMessage] = useState("");
 
@@ -25,7 +25,7 @@ const Channel = ({ setId }) => {
     setId(RoomID);
   };
 
-  const handleSendMessage = () => {
+  const handleSendMessage = (e) => {
     sendMessage(newMessage);
     setNewMessage("");
   };
@@ -64,12 +64,13 @@ const Channel = ({ setId }) => {
             <li>
               <span style={{ color: "crimson" }}>[ADMIN]</span>
               <input
+                id="roomid"
                 type="text"
-                placeholder="Enter RoomID"
+                placeholder="Enter RoomId"
                 value={RoomID}
                 onChange={handleRoomIdChange}
               />
-              <div id="submit" onClick={handleRoomJoin}>
+              <div id="join" onClick={handleRoomJoin}>
                 +
               </div>
             </li>
