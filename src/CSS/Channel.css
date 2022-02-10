@@ -96,9 +96,21 @@
 #roomid {
     display: block;
     z-index: 1;
-    height: 15px;
-    width: 15px;
+    height: 30px;
     background: linear-gradient(to top right, #1a1a1a 0%, #202020 100%); 
+}
+ 
+#join {
+    display: block;
+    width: 30px;
+    height: 30px;
+    background-image: linear-gradient(to top right, #1a1a1ab4 0%, #cc00ffa2 100%); 
+    text-align: center;
+    font-size: 15px;
+    color: #ffffff;
+    text-shadow: 0px 1px 0px #ffffff4d, 0px -1px 0px #000000b3;
+    line-height: 210%;
+    pointer-events: auto;
 }
 
 input[type=text] {
